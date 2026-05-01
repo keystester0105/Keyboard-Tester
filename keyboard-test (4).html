@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard Test Online – Test Every Key on Your Keyboard | KeyboardTest.app</title>
+<meta name="description" content="Free online keyboard tester. Press any key to instantly check if it works. Test all 104 keys including function keys, numpad, and special keys. No download required.">
+<meta name="keywords" content="keyboard test, keyboard tester, test keyboard online, keyboard key test, check keyboard keys, online keyboard test, keyboard not working, test every key">
+<meta name="robots" content="index, follow">
+<meta name="author" content="KeyboardTest.app">
+<link rel="canonical" href="https://keyboardtest.app/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Keyboard Test Online – Test Every Key Instantly">
+<meta property="og:description" content="Free online keyboard tester. Press any key to check if it works. Supports all 104 keys. No download needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://keyboardtest.app/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keyboard Test Online">
+<meta name="twitter:description" content="Free online keyboard tester. Press any key to check if it works instantly.">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Keyboard Test Online",
+  "url": "https://keyboardtest.app/",
+  "description": "Free online tool to test every key on your keyboard. Instantly detect broken, stuck, or malfunctioning keys.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": ["Test all 104 keys", "Real-time key detection", "Key code inspector", "Progress tracker", "No download required"]
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     GOOGLE ANALYTICS 4
+     Replace G-XXXXXXXXXX with your real Measurement ID
+     from: analytics.google.com → Admin → Data Streams
+     ═══════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    page_title: 'Keyboard Test Online',
+    page_location: window.location.href,
+    anonymize_ip: true          // GDPR-friendly default
+  });
+
+  // Custom GA4 event: fired when user tests their first key
+  window._ga4_first_key_sent = false;
+  window.trackFirstKey = function() {
+    if (!window._ga4_first_key_sent) {
+      gtag('event', 'keyboard_test_started', { event_category: 'engagement' });
+      window._ga4_first_key_sent = true;
+    }
+  };
+  // Custom GA4 event: fired when all keys are tested
+  window.trackTestComplete = function(total) {
+    gtag('event', 'keyboard_test_complete', {
+      event_category: 'engagement',
+      event_label: 'all_keys_tested',
+      value: total
+    });
+  };
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     GOOGLE ADSENSE
+     Replace ca-pub-XXXXXXXXXXXXXXXX with your Publisher ID
+     from: adsense.google.com → Account → Account info
+     ═══════════════════════════════════════════════════ -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #f4efe6;
+  --surface:   #ece6d9;
+  --border:    #c8b89a;
+  --border2:   #b0a080;
+  --text:      #2a2016;
+  --muted:     #7a6a50;
+  --accent:    #8b1a1a;
+  --key-bg:    #2e2418;
+  --key-top:   #3e3226;
+  --key-bdr:   #4e4030;
+  --key-txt:   #9a8866;
+  --key-bot:   #14100a;
+  --pressed:   #c8a030;
+  --tested:    #2a5a1e;
+  --tested-t:  #5ab840;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--text);
+  color: #f0e8d8;
+  text-align: center;
+  padding: 14px 20px 12px;
+  border-bottom: 3px solid var(--accent);
+}
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+header p {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #a09070;
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+}
+
+/* ── NAV BAR ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+nav a {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-right: 1px solid var(--border);
+  transition: color 0.15s, background 0.15s;
+}
+nav a:first-child { border-left: 1px solid var(--border); }
+nav a:hover { color: var(--accent); background: #e8e0d0; }
+
+/* ── MAIN LAYOUT ── */
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 14px 16px 0;
+}
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.stat-group { display: flex; gap: 20px; align-items: center; }
+.stat { text-align: center; }
+.stat-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text);
+}
+.stat-l { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.divider-v { width: 1px; height: 32px; background: var(--border); }
+.progress-wrap { flex: 1; min-width: 130px; }
+.progress-track {
+  height: 5px; background: #d4c8b0; border-radius: 3px;
+  border: 1px solid var(--border); overflow: hidden; margin-bottom: 4px;
+}
+.progress-fill {
+  height: 100%; background: var(--tested); border-radius: 3px;
+  transition: width 0.3s ease; width: 0%;
+}
+.progress-lbl { font-size: 0.68rem; color: var(--muted); text-align: right; }
+.btn-wrap { display: flex; gap: 7px; margin-left: auto; }
+.btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: 2px solid var(--border2);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.btn:hover { background: #ddd6c4; }
+.btn:active { transform: translateY(1px); border-bottom-width: 1px; }
+.btn.accent { border-color: var(--accent); color: var(--accent); }
+
+/* ── KEYBOARD SHELL ── */
+.kb-shell {
+  background: #1c1510;
+  border: 2px solid #100d08;
+  border-radius: 10px;
+  padding: 12px 14px 16px;
+  box-shadow: 0 4px 0 #08060400, inset 0 1px 0 #3a3020;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.kb-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 700px;
+}
+
+/* function row */
+.fn-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.fn-gap { flex: 1; }
+.fn-group { display: flex; gap: 4px; }
+
+/* main block */
+.kb-body {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.main-block { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.nav-block  { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.num-block  { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+
+.kb-row { display: flex; gap: 4px; align-items: flex-start; }
+
+/* ── KEY ── */
+.key {
+  background: var(--key-bg);
+  border: 1px solid var(--key-bdr);
+  border-top: 1px solid #5a4a36;
+  border-bottom: 3px solid var(--key-bot);
+  border-radius: 4px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: var(--key-txt);
+  cursor: default;
+  transition: background 0.06s, color 0.06s, transform 0.05s;
+  padding: 2px 4px;
+  text-align: center;
+  line-height: 1.1;
+  flex-shrink: 0;
+  user-select: none;
+}
+.key .top-label { font-size: 8px; color: #6a5840; font-weight: 400; }
+.key .bot-label { font-size: 9px; font-weight: 700; }
+
+/* widths */
+.w-esc  { min-width: 36px; }
+.w-15   { min-width: 54px; }
+.w-175  { min-width: 63px; }
+.w-20   { min-width: 72px; }
+.w-225  { min-width: 81px; }
+.w-275  { min-width: 99px; }
+.w-625  { min-width: 225px; }
+.tall   { height: 76px; justify-content: flex-end; padding-bottom: 5px; }
+
+.key.pressed {
+  background: var(--pressed);
+  border-color: #e0b840;
+  border-top-color: #f0d060;
+  border-bottom: 1px solid #604810;
+  color: #2a1a00;
+  transform: translateY(2px);
+}
+.key.pressed .top-label { color: #4a3000; }
+
+.key.done {
+  background: var(--tested);
+  border-color: #3a6a28;
+  border-top-color: #4a8030;
+  border-bottom-color: #0e2808;
+  color: var(--tested-t);
+}
+.key.done .top-label { color: #3a8020; }
+
+.key.pressed.done {
+  background: var(--pressed);
+  color: #2a1a00;
+}
+
+/* nav spacing */
+.nav-gap { height: 10px; }
+.nav-gap-sm { height: 4px; }
+
+/* numpad grid */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 36px);
+  grid-template-rows: repeat(5, 36px);
+  gap: 4px;
+}
+
+/* ── INFO ROW ── */
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+.info-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 7px;
+  margin-bottom: 9px;
+  letter-spacing: 0.03em;
+}
+.last-key-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--text);
+  line-height: 1;
+  min-height: 32px;
+}
+.last-key-code { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+
+.ki-table { width: 100%; }
+.ki-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #ddd0b8; }
+.ki-row:last-child { border-bottom: none; }
+.ki-prop { font-size: 0.72rem; color: var(--muted); }
+.ki-val  { font-size: 0.72rem; color: var(--text); font-weight: 700; font-family: 'Courier New', monospace; }
+
+/* legend */
+.legend {
+  display: flex; gap: 16px; align-items: center;
+  justify-content: center; padding: 6px 0 2px;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--muted); }
+.swatch {
+  width: 16px; height: 10px; border-radius: 2px;
+  border-bottom: 2px solid rgba(0,0,0,0.4);
+}
+.sw-n { background: var(--key-bg); }
+.sw-p { background: var(--pressed); }
+.sw-d { background: var(--tested); }
+
+/* ── SECTIONS BELOW ── */
+.below-fold {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.section-divider {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 28px 0;
+  position: relative;
+}
+.section-divider::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  padding: 0 12px;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Lato', sans-serif;
+}
+
+/* HOW TO USE */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.how-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+}
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.step-title {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* FAQ */
+.faq-list { margin-top: 16px; display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  background: var(--surface);
+}
+.faq-item:first-child { border-radius: 6px 6px 0 0; }
+.faq-item:last-child  { border-radius: 0 0 6px 6px; border-bottom: 1px solid var(--border); }
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 13px 18px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text);
+}
+.faq-q:hover { background: #e8e0d0; }
+.faq-icon {
+  font-size: 1rem;
+  color: var(--accent);
+  font-family: 'Playfair Display', serif;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.faq-a {
+  display: none;
+  padding: 0 18px 14px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+}
+.faq-a p { margin-bottom: 6px; }
+.faq-a p:last-child { margin-bottom: 0; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-item.open .faq-a { display: block; }
+
+/* FEATURES */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.feat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 14px;
+  text-align: center;
+}
+.feat-icon { font-size: 1.4rem; margin-bottom: 6px; color: var(--accent); font-family: 'Playfair Display', serif; }
+.feat-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 4px; }
+.feat-desc { font-size: 0.73rem; color: var(--muted); line-height: 1.4; }
+
+/* section headings */
+.sec-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+.sec-lead { font-size: 0.82rem; color: var(--muted); margin-top: 5px; font-style: italic; font-family: 'Source Serif 4', serif; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text);
+  color: #7a6a50;
+  text-align: center;
+  padding: 18px 20px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  border-top: 3px solid var(--accent);
+}
+footer a { color: #a09070; text-decoration: none; }
+footer a:hover { color: #c8a030; text-decoration: underline; }
+.footer-links { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.footer-links a { font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; color: #a09070; text-decoration: none; }
+.footer-links a:hover { color: #c8a030; text-decoration: underline; }
+
+/* LEGAL MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,8,4,0.82); z-index: 10000;
+  align-items: flex-start; justify-content: center;
+  padding: 24px 16px 40px; overflow-y: auto;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--bg); border: 2px solid var(--border); border-radius: 10px;
+  max-width: 760px; width: 100%; margin: auto;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.5); overflow: hidden;
+  animation: modalIn 0.22s ease;
+}
+@keyframes modalIn { from { transform:translateY(20px);opacity:0; } to { transform:translateY(0);opacity:1; } }
+.modal-header {
+  background: var(--text); color: #f0e8d8; padding: 18px 24px 16px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; border-bottom: 3px solid var(--accent);
+}
+.modal-header h2 { font-family: "Playfair Display",serif; font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+.modal-header p  { font-size: 0.72rem; color: #7a6a50; margin-top: 4px; font-style: italic; }
+.modal-close {
+  background: none; border: 1px solid #4a3a28; border-radius: 4px;
+  color: #a09070; font-size: 1.1rem; width: 32px; height: 32px; cursor: pointer;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+.modal-close:hover { border-color: var(--accent); color: #fff; }
+.modal-body { padding: 24px 28px 32px; max-height: 70vh; overflow-y: auto; }
+.modal-body h3 {
+  font-family: "Playfair Display",serif; font-size: 1rem; color: var(--accent);
+  margin: 22px 0 7px; padding-bottom: 5px; border-bottom: 1px solid var(--border);
+}
+.modal-body h3:first-child { margin-top: 0; }
+.modal-body p  { font-size: 0.8rem; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+.modal-body ul { margin: 6px 0 10px 18px; font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+.modal-body ul li { margin-bottom: 4px; }
+.modal-body strong { color: var(--text); font-weight: 700; }
+.modal-body a { color: var(--accent); }
+.modal-body code {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 3px;
+  padding: 1px 5px; font-size: 0.75rem; font-family: "Courier New",monospace; color: var(--text);
+}
+.modal-effective {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  padding: 10px 14px; font-size: 0.73rem; color: var(--muted); margin-bottom: 18px;
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.modal-effective span strong { color: var(--text); }
+
+
+/* ── COOKIE CONSENT BANNER ── */
+#cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #1e1810;
+  color: #c8b89a;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 9999;
+  border-top: 2px solid var(--accent);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+#cookie-banner.hidden { transform: translateY(110%); }
+#cookie-banner p { flex: 1; min-width: 220px; }
+#cookie-banner a { color: #c8a030; text-decoration: underline; }
+.cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.cookie-btn {
+  padding: 7px 16px;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.72rem;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+}
+.cookie-btn.accept { background: var(--accent); color: #fff; }
+.cookie-btn.accept:hover { background: #a02020; }
+.cookie-btn.decline { background: transparent; border: 1px solid #5a4a36; color: #8a7a60; }
+.cookie-btn.decline:hover { border-color: #8a7a60; }
+
+/* ── AD SLOTS ── */
+.ad-slot {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.ad-slot::before {
+  content: 'Advertisement';
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b0a080;
+  padding: 4px 0 2px;
+  font-family: 'Lato', sans-serif;
+}
+/* Leaderboard 728×90 — sits between nav and main */
+.ad-leaderboard {
+  width: 100%;
+  max-width: 980px;
+  margin: 10px auto 0;
+  min-height: 100px;
+}
+.ad-leaderboard ins { display: block; min-height: 90px; }
+
+/* Rectangle 336×280 — right of keyboard in below-fold */
+.ad-rectangle {
+  min-height: 290px;
+  width: 336px;
+  flex-shrink: 0;
+}
+.ad-rectangle ins { display: block; min-height: 280px; }
+
+/* Banner 728×90 — between FAQ and About */
+.ad-banner {
+  width: 100%;
+  min-height: 100px;
+  margin: 0;
+}
+.ad-banner ins { display: block; min-height: 90px; }
+
+/* content + sidebar layout for below-fold */
+.content-ad-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.content-col { flex: 1; min-width: 0; }
+
+@media (max-width: 760px) {
+  .ad-rectangle { width: 100%; min-height: 260px; }
+  .content-ad-row { flex-direction: column; }
+}
+
+
+@media (max-width: 760px) {
+  .info-row { grid-template-columns: 1fr; }
+  .stats-row { flex-wrap: wrap; }
+  .btn-wrap { width: 100%; }
+  .btn { flex: 1; text-align: center; }
+  header h1 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Keyboard Test Online</h1>
+  <p>Free tool to test every key on your keyboard — instantly, in your browser</p>
+</header>
+
+<nav aria-label="Page sections">
+  <a href="#tester">Tester</a>
+  <a href="#how-to-use">How to Use</a>
+  <a href="#features">Features</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<!-- ── AD: Leaderboard 728×90 (above the fold, below nav) ──
+     Replace data-ad-client and data-ad-slot with your values
+     from: AdSense → Ads → By ad unit → Display ads          -->
+<div class="ad-slot ad-leaderboard" aria-label="Advertisement" role="complementary">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="1111111111"
+       data-ad-format="horizontal"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<main id="tester" aria-label="Keyboard tester">
+
+  <!-- Stats -->
+  <div class="stats-row" role="status" aria-live="polite">
+    <div class="stat-group">
+      <div class="stat">
+        <div class="stat-n" id="s-tested">0</div>
+        <div class="stat-l">Tested</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="stat">
+        <div class="stat-n" id="s-remain">—</div>
+        <div class="stat-l">Remaining</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="stat">
+        <div class="stat-n" id="s-pct">0%</div>
+        <div class="stat-l">Complete</div>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
+      <div class="progress-lbl" id="prog-lbl">0 / 0 keys</div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn" id="btn-reset" aria-label="Reset all tested keys">Reset</button>
+      <button class="btn accent" id="btn-show" aria-label="Highlight untested keys">Show untested</button>
+    </div>
+  </div>
+
+  <!-- Keyboard -->
+  <div class="kb-shell" role="application" aria-label="Virtual keyboard layout">
+    <div class="kb-inner" id="kb-inner">
+
+      <!-- Function row -->
+      <div class="fn-row" id="fn-row"></div>
+
+      <!-- Body: main + nav + numpad -->
+      <div class="kb-body">
+        <div class="main-block" id="main-block"></div>
+        <div class="nav-block"  id="nav-block"></div>
+        <div class="num-block"  id="num-block"></div>
+      </div>
+
+    </div>
+
+    <!-- Legend -->
+    <div class="legend" aria-hidden="true">
+      <div class="legend-item"><div class="swatch sw-n"></div>Not tested</div>
+      <div class="legend-item"><div class="swatch sw-p"></div>Pressed</div>
+      <div class="legend-item"><div class="swatch sw-d"></div>Tested ✓</div>
+    </div>
+  </div>
+
+  <!-- Info row -->
+  <div class="info-row">
+    <div class="info-card">
+      <h2>Last Key Pressed</h2>
+      <div class="last-key-name" id="lk-name" aria-live="polite">—</div>
+      <div class="last-key-code" id="lk-code">Press any key to begin</div>
+    </div>
+    <div class="info-card">
+      <h2>Key Properties</h2>
+      <div class="ki-table" role="table" aria-label="Key event properties">
+        <div class="ki-row"><span class="ki-prop">code</span><span class="ki-val" id="ki-code">—</span></div>
+        <div class="ki-row"><span class="ki-prop">key</span><span class="ki-val" id="ki-key">—</span></div>
+        <div class="ki-row"><span class="ki-prop">keyCode</span><span class="ki-val" id="ki-keycode">—</span></div>
+        <div class="ki-row"><span class="ki-prop">which</span><span class="ki-val" id="ki-which">—</span></div>
+        <div class="ki-row"><span class="ki-prop">location</span><span class="ki-val" id="ki-location">—</span></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─────────────── BELOW FOLD ─────────────── -->
+<div class="below-fold">
+
+  <div class="content-ad-row">
+    <div class="content-col">
+
+  <hr class="section-divider" data-label="How to Use" id="how-to-use">
+
+  <section aria-labelledby="htu-heading">
+    <h2 class="sec-h2" id="htu-heading">How to Use the Keyboard Tester</h2>
+    <p class="sec-lead">Three simple steps to test your keyboard in under a minute.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Click anywhere on the tester</div>
+        <div class="step-desc">Click inside the keyboard area or anywhere on the page to ensure your browser is capturing key events from this window.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Press every key</div>
+        <div class="step-desc">Press each key on your physical keyboard. Keys light up gold while held and turn green once successfully registered. Check function keys, numpad, and special keys too.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Identify problem keys</div>
+        <div class="step-desc">Any key that stays dark was not detected. Use "Show untested" to highlight remaining keys. A key that doesn't respond may be stuck, damaged, or have a driver issue.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Check the key info panel</div>
+        <div class="step-desc">The panel shows the exact code, keyCode, and location for every keypress — useful for developers debugging keyboard input in web applications.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" data-label="Features" id="features">
+
+  <section aria-labelledby="feat-heading">
+    <h2 class="sec-h2" id="feat-heading">Features</h2>
+    <p class="sec-lead">Everything you need to diagnose your keyboard, right in the browser.</p>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">104</div>
+        <div class="feat-title">Full 104-key layout</div>
+        <div class="feat-desc">Tests every key including F-keys, numpad, navigation cluster, and modifiers.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#x26A1;</div>
+        <div class="feat-title">Real-time detection</div>
+        <div class="feat-desc">Instant visual feedback the moment a key is pressed — no lag, no delay.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#x1F50D;</div>
+        <div class="feat-title">Key code inspector</div>
+        <div class="feat-desc">Shows code, key, keyCode, which, and location for every event.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#x2713;</div>
+        <div class="feat-title">Progress tracking</div>
+        <div class="feat-desc">See exactly how many keys have been tested and how many remain.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#x1F6AB;</div>
+        <div class="feat-title">No download needed</div>
+        <div class="feat-desc">Runs entirely in your browser. No software, no extensions, no account.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#x1F512;</div>
+        <div class="feat-title">Privacy first</div>
+        <div class="feat-desc">No keystrokes are ever sent to a server. Everything stays on your device.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" data-label="FAQ" id="faq">
+
+  <section aria-labelledby="faq-heading">
+    <h2 class="sec-h2" id="faq-heading">Frequently Asked Questions</h2>
+    <p class="sec-lead">Common questions about keyboard testing and troubleshooting.</p>
+
+    <div class="faq-list" role="list">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Is this keyboard tester safe to use? Does it log my keystrokes?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Completely safe. This tool runs entirely client-side in your browser using JavaScript's <code>keydown</code> and <code>keyup</code> events. No keystroke data is ever transmitted to any server. Your key presses are only used to highlight the corresponding key on the visual layout and never stored or logged anywhere.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Why doesn't a key light up when I press it?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>There are a few possible reasons: the key is physically damaged or has debris underneath it; the keyboard firmware is not sending the key event; or the browser may be consuming the event before our tester can see it (common with browser shortcuts like Ctrl+W or Ctrl+T).</p>
+          <p>Try pressing the key multiple times, and if it still doesn't register, the key likely has a hardware fault. Some system keys (Power, Fn on laptops) are handled at the OS level and will never appear in browser-based testers.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Why can't I test certain keys like the Power key or Fn key?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>The Power key, Fn key, and some multimedia keys are intercepted by your operating system or keyboard firmware before they reach the browser. This is by design across all operating systems and is not a limitation specific to this tester — no browser-based tool can detect these keys.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>What do "keyCode", "which", and "code" mean in the key info panel?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p><strong>code</strong> — The physical key identifier (e.g., "KeyA", "ShiftLeft"). This is layout-independent and the modern recommended value to use in web apps.</p>
+          <p><strong>key</strong> — The character or name the key produces given current modifiers (e.g., "A" or "a" depending on Shift/CapsLock).</p>
+          <p><strong>keyCode / which</strong> — Legacy numeric identifiers, deprecated but still widely used in older codebases. They are equivalent for most keys.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Does this work with mechanical keyboards, gaming keyboards, and laptops?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes — this tester works with any keyboard your operating system recognises, including mechanical keyboards, membrane keyboards, gaming keyboards with macro keys, laptop built-in keyboards, and wireless Bluetooth keyboards. As long as the OS sees the keystroke, our tester will detect it.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>How do I know if my keyboard has key rollover issues?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Key rollover refers to how many simultaneous key presses a keyboard can detect. Hold down several keys at once and watch which ones register. If pressing three or more keys together causes some to not light up on this tester, your keyboard may have limited rollover (2KRO or 6KRO). Gaming mechanical keyboards typically offer full N-key rollover (NKRO), meaning every key pressed simultaneously is detected.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>A key is stuck or registering repeatedly — what should I do?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>A key that fires repeatedly without being pressed (known as "chattering") is usually caused by a worn or dirty switch. Try these steps: (1) Power off and gently shake the keyboard to dislodge debris. (2) Use compressed air to clean around the key. (3) For mechanical keyboards, try cleaning or replacing the individual switch. (4) Update your keyboard drivers from your manufacturer's website. If the problem persists, the key switch likely needs replacement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Can I use this to test a wireless or Bluetooth keyboard?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. As long as your wireless or Bluetooth keyboard is paired and connected to your computer, the operating system will pass its key events to the browser exactly like a wired keyboard. There is no difference in how this tester handles wired versus wireless input.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="section-divider" data-label="About">
+
+    </div><!-- /.content-col -->
+
+    <!-- ── AD: Rectangle 336×280 (sidebar, sticky alongside content) ──
+         Replace data-ad-client and data-ad-slot with your values       -->
+    <div class="ad-slot ad-rectangle" aria-label="Advertisement" role="complementary" style="position:sticky;top:16px;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="2222222222"
+           data-ad-format="rectangle"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div><!-- /.content-ad-row -->
+
+  <!-- ── AD: Banner 728×90 between FAQ and About ── -->
+  <div class="ad-slot ad-banner" aria-label="Advertisement" role="complementary" style="margin:20px 0;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="3333333333"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <hr class="section-divider" data-label="About" style="margin-top:0;">
+
+  <section aria-labelledby="about-heading">
+    <h2 class="sec-h2" id="about-heading">About This Tool</h2>
+    <p class="sec-lead" style="max-width:680px;">
+      Keyboard Test Online is a free, open-access diagnostic utility built for everyday users, gamers, and developers alike. Whether you've bought a new keyboard, suspect a faulty key, or simply want to verify your setup before an important task, this tool gives you instant, reliable answers — with no software to install and no personal data collected.
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a>
+    <span style="color:#4a3a28;">|</span>
+    <a href="#" onclick="openModal('terms');return false;">Terms &amp; Conditions</a>
+  </div>
+  <p>&copy; 2025 KeyboardTest.app &mdash; Free online keyboard diagnostic tool</p>
+  <p style="margin-top:5px;">No keystrokes are ever stored or transmitted. Runs entirely in your browser.</p>
+</footer>
+
+<script>
+(function(){
+
+const KEY_DEFS = {
+  fn: [
+    {l:'Esc',c:'Escape',w:'w-esc'},
+    null,
+    {l:'F1',c:'F1'},{l:'F2',c:'F2'},{l:'F3',c:'F3'},{l:'F4',c:'F4'},
+    null,
+    {l:'F5',c:'F5'},{l:'F6',c:'F6'},{l:'F7',c:'F7'},{l:'F8',c:'F8'},
+    null,
+    {l:'F9',c:'F9'},{l:'F10',c:'F10'},{l:'F11',c:'F11'},{l:'F12',c:'F12'},
+  ],
+  main: [
+    [
+      {l:'`',l2:'~',c:'Backquote'},
+      {l:'1',l2:'!',c:'Digit1'},{l:'2',l2:'@',c:'Digit2'},{l:'3',l2:'#',c:'Digit3'},
+      {l:'4',l2:'$',c:'Digit4'},{l:'5',l2:'%',c:'Digit5'},{l:'6',l2:'^',c:'Digit6'},
+      {l:'7',l2:'&',c:'Digit7'},{l:'8',l2:'*',c:'Digit8'},{l:'9',l2:'(',c:'Digit9'},
+      {l:'0',l2:')',c:'Digit0'},{l:'-',l2:'_',c:'Minus'},{l:'=',l2:'+',c:'Equal'},
+      {l:'Backspace',c:'Backspace',w:'w-175'},
+    ],
+    [
+      {l:'Tab',c:'Tab',w:'w-15'},
+      {l:'Q',c:'KeyQ'},{l:'W',c:'KeyW'},{l:'E',c:'KeyE'},{l:'R',c:'KeyR'},
+      {l:'T',c:'KeyT'},{l:'Y',c:'KeyY'},{l:'U',c:'KeyU'},{l:'I',c:'KeyI'},
+      {l:'O',c:'KeyO'},{l:'P',c:'KeyP'},{l:'[',l2:'{',c:'BracketLeft'},
+      {l:']',l2:'}',c:'BracketRight'},{l:'\\',l2:'|',c:'Backslash',w:'w-15'},
+    ],
+    [
+      {l:'Caps Lock',c:'CapsLock',w:'w-175'},
+      {l:'A',c:'KeyA'},{l:'S',c:'KeyS'},{l:'D',c:'KeyD'},{l:'F',c:'KeyF'},
+      {l:'G',c:'KeyG'},{l:'H',c:'KeyH'},{l:'J',c:'KeyJ'},{l:'K',c:'KeyK'},
+      {l:'L',c:'KeyL'},{l:';',l2:':',c:'Semicolon'},{l:"'",l2:'"',c:'Quote'},
+      {l:'Enter',c:'Enter',w:'w-20'},
+    ],
+    [
+      {l:'Shift',c:'ShiftLeft',w:'w-225'},
+      {l:'Z',c:'KeyZ'},{l:'X',c:'KeyX'},{l:'C',c:'KeyC'},{l:'V',c:'KeyV'},
+      {l:'B',c:'KeyB'},{l:'N',c:'KeyN'},{l:'M',c:'KeyM'},
+      {l:',',l2:'<',c:'Comma'},{l:'.',l2:'>',c:'Period'},{l:'/',l2:'?',c:'Slash'},
+      {l:'Shift',c:'ShiftRight',w:'w-275'},
+    ],
+    [
+      {l:'Ctrl',c:'ControlLeft',w:'w-15'},{l:'Win',c:'MetaLeft',w:'w-15'},{l:'Alt',c:'AltLeft',w:'w-15'},
+      {l:'Space',c:'Space',w:'w-625'},
+      {l:'Alt',c:'AltRight',w:'w-15'},{l:'Win',c:'MetaRight',w:'w-15'},
+      {l:'Menu',c:'ContextMenu',w:'w-15'},{l:'Ctrl',c:'ControlRight',w:'w-15'},
+    ],
+  ],
+};
+
+const NAV_ROWS = [
+  [{l:'PrtSc',c:'PrintScreen'},{l:'ScrLk',c:'ScrollLock'},{l:'Pause',c:'Pause'}],
+  'gap',
+  [{l:'Ins',c:'Insert'},{l:'Home',c:'Home'},{l:'PgUp',c:'PageUp'}],
+  [{l:'Del',c:'Delete'},{l:'End',c:'End'},{l:'PgDn',c:'PageDown'}],
+  'gap',
+  [null,{l:'↑',c:'ArrowUp'},null],
+  [{l:'←',c:'ArrowLeft'},{l:'↓',c:'ArrowDown'},{l:'→',c:'ArrowRight'}],
+];
+
+const NUM_CELLS = [
+  {l:'NumLk',c:'NumLock',    r:1,col:1},
+  {l:'/',   c:'NumpadDivide', r:1,col:2},
+  {l:'*',   c:'NumpadMultiply',r:1,col:3},
+  {l:'-',   c:'NumpadSubtract',r:1,col:4},
+  {l:'7',   c:'Numpad7',      r:2,col:1},
+  {l:'8',   c:'Numpad8',      r:2,col:2},
+  {l:'9',   c:'Numpad9',      r:2,col:3},
+  {l:'+',   c:'NumpadAdd',    r:2,col:4, rs:2},
+  {l:'4',   c:'Numpad4',      r:3,col:1},
+  {l:'5',   c:'Numpad5',      r:3,col:2},
+  {l:'6',   c:'Numpad6',      r:3,col:3},
+  {l:'1',   c:'Numpad1',      r:4,col:1},
+  {l:'2',   c:'Numpad2',      r:4,col:2},
+  {l:'3',   c:'Numpad3',      r:4,col:3},
+  {l:'Enter',c:'NumpadEnter', r:4,col:4, rs:2},
+  {l:'0',   c:'Numpad0',      r:5,col:1, cs:2},
+  {l:'.',   c:'NumpadDecimal',r:5,col:3},
+];
+
+const keyEls = {};
+let total = 0;
+const tested = new Set();
+
+function makeKey(def) {
+  if (!def) {
+    const sp = document.createElement('div');
+    sp.style.cssText = 'min-width:36px;height:36px;flex-shrink:0;';
+    return sp;
+  }
+  const el = document.createElement('div');
+  el.className = 'key' + (def.w ? ' ' + def.w : '');
+  el.setAttribute('aria-label', def.c);
+
+  if (def.l2) {
+    el.innerHTML = '<span class="top-label">' + def.l2 + '</span><span class="bot-label">' + def.l + '</span>';
+  } else {
+    el.innerHTML = '<span class="bot-label">' + def.l + '</span>';
+  }
+
+  if (!keyEls[def.c]) { keyEls[def.c] = []; total++; }
+  keyEls[def.c].push(el);
+  return el;
+}
+
+function makeSpacer(h) {
+  const d = document.createElement('div');
+  d.style.height = h + 'px';
+  return d;
+}
+
+// Build function row
+const fnRow = document.getElementById('fn-row');
+KEY_DEFS.fn.forEach(k => {
+  if (k === null) {
+    const g = document.createElement('div');
+    g.style.cssText = 'width:10px;flex-shrink:0;';
+    fnRow.appendChild(g);
+  } else {
+    fnRow.appendChild(makeKey(k));
+  }
+});
+
+// Build main block
+const mainBlock = document.getElementById('main-block');
+KEY_DEFS.main.forEach(row => {
+  const rowDiv = document.createElement('div');
+  rowDiv.className = 'kb-row';
+  row.forEach(k => rowDiv.appendChild(makeKey(k)));
+  mainBlock.appendChild(rowDiv);
+});
+
+// Build nav block
+const navBlock = document.getElementById('nav-block');
+NAV_ROWS.forEach(row => {
+  if (row === 'gap') { navBlock.appendChild(makeSpacer(10)); return; }
+  const rowDiv = document.createElement('div');
+  rowDiv.className = 'kb-row';
+  row.forEach(k => rowDiv.appendChild(makeKey(k)));
+  navBlock.appendChild(rowDiv);
+});
+
+// Build numpad
+const numBlock = document.getElementById('num-block');
+const grid = document.createElement('div');
+grid.className = 'num-grid';
+grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,36px);grid-template-rows:repeat(5,36px);gap:4px;';
+
+NUM_CELLS.forEach(cell => {
+  const el = document.createElement('div');
+  el.className = 'key';
+  el.setAttribute('aria-label', cell.c);
+  el.innerHTML = '<span class="bot-label">' + cell.l + '</span>';
+  el.style.gridRow    = cell.rs  ? cell.r + ' / span ' + cell.rs  : cell.r.toString();
+  el.style.gridColumn = cell.cs  ? cell.col + ' / span ' + cell.cs : cell.col.toString();
+  if (cell.rs || cell.cs) {
+    if (cell.rs) { el.style.height = (36 * cell.rs + 4 * (cell.rs - 1)) + 'px'; el.style.justifyContent = 'flex-end'; el.style.paddingBottom = '5px'; }
+    if (cell.cs) { el.style.minWidth = (36 * cell.cs + 4 * (cell.cs - 1)) + 'px'; }
+  }
+  if (!keyEls[cell.c]) { keyEls[cell.c] = []; total++; }
+  keyEls[cell.c].push(el);
+  grid.appendChild(el);
+});
+numBlock.appendChild(grid);
+
+// Stats init
+document.getElementById('s-remain').textContent = total;
+document.getElementById('prog-lbl').textContent = '0 / ' + total + ' keys';
+
+function updateStats() {
+  const n = tested.size;
+  const pct = Math.round(n / total * 100);
+  document.getElementById('s-tested').textContent = n;
+  document.getElementById('s-remain').textContent = total - n;
+  document.getElementById('s-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-lbl').textContent = n + ' / ' + total + ' keys';
+  // GA4: fire completion event when all keys tested
+  if (n === total && window.trackTestComplete) window.trackTestComplete(total);
+}
+
+const LOC = ['Standard','Left','Right','Numpad','Mobile','Joystick'];
+
+document.addEventListener('keydown', e => {
+  e.preventDefault();
+  const code = e.code;
+  (keyEls[code] || []).forEach(el => el.classList.add('pressed'));
+  if (keyEls[code] && !tested.has(code)) {
+    tested.add(code);
+    keyEls[code].forEach(el => el.classList.add('done'));
+    updateStats();
+  }
+  const disp = e.key === ' ' ? 'Space' : e.key;
+  document.getElementById('lk-name').textContent = disp;
+  document.getElementById('lk-code').textContent = code;
+  document.getElementById('ki-code').textContent    = e.code;
+  document.getElementById('ki-key').textContent     = e.key;
+  document.getElementById('ki-keycode').textContent = e.keyCode;
+  document.getElementById('ki-which').textContent   = e.which;
+  document.getElementById('ki-location').textContent= LOC[e.location] || e.location;
+});
+
+document.addEventListener('keyup', e => {
+  e.preventDefault();
+  (keyEls[e.code] || []).forEach(el => el.classList.remove('pressed'));
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  tested.clear();
+  Object.values(keyEls).flat().forEach(el => el.classList.remove('pressed','done'));
+  ['lk-name','lk-code','ki-code','ki-key','ki-keycode','ki-which','ki-location'].forEach(id => {
+    document.getElementById(id).textContent = '—';
+  });
+  document.getElementById('lk-code').textContent = 'Press any key to begin';
+  updateStats();
+});
+
+document.getElementById('btn-show').addEventListener('click', () => {
+  const rem = Object.keys(keyEls).filter(c => !tested.has(c));
+  rem.forEach(code => {
+    (keyEls[code] || []).forEach(el => {
+      el.style.outline = '2px solid #c8a030';
+      el.style.outlineOffset = '2px';
+      setTimeout(() => { el.style.outline = ''; el.style.outlineOffset = ''; }, 2200);
+    });
+  });
+  document.getElementById('lk-name').textContent = rem.length ? rem.length + ' remaining' : 'All done!';
+  document.getElementById('lk-code').textContent = rem.length ? 'highlighted in gold' : 'Every key has been tested';
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if (!open) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+// ── GA4 Custom Events ──
+document.addEventListener('keydown', function _firstKey() {
+  if (window.trackFirstKey) window.trackFirstKey();
+  document.removeEventListener('keydown', _firstKey);
+}, { once: true });
+
+// ── Cookie Consent ──
+(function() {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  const consent = localStorage.getItem('cookie_consent');
+  if (consent) { banner.classList.add('hidden'); return; }
+  setTimeout(() => banner.classList.remove('hidden'), 800);
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('cookie_consent', 'accepted');
+    banner.classList.add('hidden');
+    if (window.gtag) gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'granted'
+    });
+  });
+  document.getElementById('cookie-decline').addEventListener('click', () => {
+    localStorage.setItem('cookie_consent', 'declined');
+    banner.classList.add('hidden');
+    if (window.gtag) gtag('consent', 'update', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied'
+    });
+  });
+})();
+
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     COOKIE CONSENT BANNER
+     Required for GDPR (EU), CCPA (California), etc.
+     ═══════════════════════════════════════════════════ -->
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="modal-privacy" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div><h2 id="privacy-title">Privacy Policy</h2><p>KeyboardTest.app &mdash; Last updated: April 2025</p></div>
+      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-effective">
+        <span><strong>Effective:</strong> 25 April 2025</span>
+        <span><strong>Site:</strong> keyboardtest.app</span>
+        <span><strong>Controller:</strong> KeyboardTest.app</span>
+      </div>
+      <h3>1. Overview</h3>
+      <p>KeyboardTest.app ("we", "our", "the site") is committed to protecting your privacy. This Privacy Policy explains what data we collect, why we collect it, and how it is used when you visit our website.</p>
+      <p><strong>Your keystrokes are never collected, stored, or transmitted.</strong> The keyboard test runs entirely in your browser using the JavaScript <code>KeyboardEvent</code> API. No key press data ever leaves your device.</p>
+
+      <h3>2. Information We Collect</h3>
+      <p>We collect two categories of information automatically when you visit the site:</p>
+      <ul>
+        <li><strong>Usage data</strong> &mdash; page views, session duration, browser type, operating system, screen resolution, referring URL, and country (via Google Analytics 4). This data is anonymised and aggregated.</li>
+        <li><strong>Cookie data</strong> &mdash; small text files stored by your browser as described in Section 4 below.</li>
+      </ul>
+      <p>We do <strong>not</strong> collect names, email addresses, or any personally identifiable information. We do not require you to create an account.</p>
+
+      <h3>3. Google Analytics</h3>
+      <p>We use <strong>Google Analytics 4 (GA4)</strong> to understand how visitors use the site. GA4 collects anonymised usage statistics such as which pages are visited and how long sessions last.</p>
+      <ul>
+        <li>IP addresses are anonymised before storage.</li>
+        <li>Data is processed by Google LLC and may be stored outside your country.</li>
+        <li>You can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Add-on</a>.</li>
+        <li>Clicking <strong>Decline</strong> in our cookie banner sets <code>analytics_storage</code> to <code>denied</code> &mdash; GA4 will not track your session.</li>
+      </ul>
+
+      <h3>4. Cookies</h3>
+      <p>We use the following cookies:</p>
+      <ul>
+        <li><strong>_ga, _ga_XXXXXXXX</strong> (Google Analytics) &mdash; distinguish users and sessions. Duration: 2 years / 24 hours. Purpose: analytics.</li>
+        <li><strong>cookie_consent</strong> (First-party, localStorage) &mdash; stores your consent choice. Persists until you clear browser data. Purpose: remembering your preference.</li>
+      </ul>
+      <p>Google AdSense may also set cookies to deliver and measure ads. These are governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You can manage or delete cookies at any time in your browser settings.</p>
+
+      <h3>5. Google AdSense &amp; Advertising</h3>
+      <p>We display ads served by <strong>Google AdSense</strong>. Google uses cookies to serve ads based on your prior visits to this and other websites.</p>
+      <ul>
+        <li>Opt out of personalised ads at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
+        <li>Or visit <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a> for industry-wide opt-out.</li>
+        <li>If you declined cookies, <code>ad_storage</code> is denied and personalised ads will not be served.</li>
+      </ul>
+      <p>We are not responsible for the content of Google ads or third-party websites linked from advertisements.</p>
+
+      <h3>6. Third-Party Services</h3>
+      <ul>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google LLC</a> &mdash; Analytics &amp; Advertising</li>
+        <li><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> &mdash; Web font delivery</li>
+      </ul>
+
+      <h3>7. Data Retention</h3>
+      <p>Google Analytics data is retained for 14 months. Cookie consent preferences persist in <code>localStorage</code> until you clear your browser data.</p>
+
+      <h3>8. Your Rights</h3>
+      <p>Under GDPR (EU/UK), CCPA (California), or other applicable laws you may have rights to access, correct, or delete data. Since we collect no PII directly, you can exercise most rights by clearing browser cookies and opting out of Google Analytics or ad personalisation.</p>
+
+      <h3>9. Children's Privacy</h3>
+      <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. We do not knowingly collect personal data from children.</p>
+
+      <h3>10. Changes to This Policy</h3>
+      <p>We may update this policy from time to time. Changes will be posted here with a revised effective date.</p>
+
+      <h3>11. Contact</h3>
+      <p>Questions? Contact us at <strong>privacy@keyboardtest.app</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS & CONDITIONS MODAL -->
+<div id="modal-terms" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div><h2 id="terms-title">Terms &amp; Conditions</h2><p>KeyboardTest.app &mdash; Last updated: April 2025</p></div>
+      <button class="modal-close" onclick="closeModal('terms')" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-effective">
+        <span><strong>Effective:</strong> 25 April 2025</span>
+        <span><strong>Jurisdiction:</strong> India</span>
+        <span><strong>Operator:</strong> KeyboardTest.app</span>
+      </div>
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing or using KeyboardTest.app ("the Site", "the Service"), you agree to be bound by these Terms &amp; Conditions. If you do not agree, please discontinue use immediately. We reserve the right to modify these Terms at any time; continued use constitutes acceptance of the revised Terms.</p>
+
+      <h3>2. Description of Service</h3>
+      <p>KeyboardTest.app provides a free, browser-based utility that allows users to test the functionality of their physical keyboard keys. The Service operates entirely client-side; <strong>no keystroke data is transmitted to our servers</strong>. The Service is provided "as is" for informational and diagnostic purposes only and is not a substitute for professional hardware diagnosis.</p>
+
+      <h3>3. Permitted Use</h3>
+      <p>You may use the Site for personal, non-commercial keyboard testing. You agree not to:</p>
+      <ul>
+        <li>Use automated scripts, bots, or scrapers to access the Site.</li>
+        <li>Reverse-engineer, copy, or redistribute the Site's code without permission.</li>
+        <li>Interfere with the Site's operation or servers.</li>
+        <li>Use the Site for any unlawful purpose.</li>
+        <li>Frame or embed the Site in another website without prior written consent.</li>
+      </ul>
+
+      <h3>4. Intellectual Property</h3>
+      <p>All content on this Site &mdash; including text, graphics, design, code, logos, and layout &mdash; is the intellectual property of KeyboardTest.app unless otherwise noted. You may not reproduce, distribute, or create derivative works without explicit written permission. The underlying keyboard event data (key codes, names) is part of the W3C Web standard and is not subject to copyright.</p>
+
+      <h3>5. Advertisements</h3>
+      <p>The Site displays advertisements served by Google AdSense and potentially other third-party ad networks. We are not responsible for the content of any third-party advertisements. Clicking on ads may take you to third-party websites governed by their own terms and privacy policies. We reserve the right to place and change ad placements at our discretion.</p>
+
+      <h3>6. Disclaimer of Warranties</h3>
+      <p>The Service is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, including but not limited to accuracy, fitness for a particular purpose, or uninterrupted operation. Browser limitations, OS-level key interception, and keyboard firmware may affect test results. We do not warrant that results will meet your requirements.</p>
+
+      <h3>7. Limitation of Liability</h3>
+      <p>To the fullest extent permitted by law, KeyboardTest.app shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of the Service, including inaccuracy in test results, hardware damage, or reliance on third-party content or advertisements.</p>
+
+      <h3>8. Third-Party Links</h3>
+      <p>The Site may contain links to third-party websites (including through ads). These are provided for convenience only. We have no control over third-party content and accept no responsibility for them or for any loss arising from your use of them.</p>
+
+      <h3>9. Privacy</h3>
+      <p>Your use of the Site is also governed by our <a href="#" onclick="closeModal('terms');setTimeout(()=>openModal('privacy'),100);return false;">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+
+      <h3>10. Governing Law</h3>
+      <p>These Terms shall be governed by the laws of India. Disputes shall be subject to the exclusive jurisdiction of courts in India.</p>
+
+      <h3>11. Severability</h3>
+      <p>If any provision is found unenforceable, it shall be limited to the minimum extent necessary, and the remaining Terms remain in full force and effect.</p>
+
+      <h3>12. Entire Agreement</h3>
+      <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and KeyboardTest.app regarding use of the Site.</p>
+
+      <h3>13. Contact</h3>
+      <p>Questions? Contact us at <strong>legal@keyboardtest.app</strong></p>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(id) {
+  var el = document.getElementById('modal-' + id);
+  if (!el) return;
+  el.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  el.onclick = function(e) { if (e.target === el) closeModal(id); };
+  document.addEventListener('keydown', function esc(e) {
+    if (e.key === 'Escape') { closeModal(id); document.removeEventListener('keydown', esc); }
+  });
+}
+function closeModal(id) {
+  var el = document.getElementById('modal-' + id);
+  if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+}
+</script>
+<div id="cookie-banner" class="hidden" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p>
+    We use cookies and similar technologies to analyse traffic and serve relevant ads.
+    Your keystrokes are <strong>never</strong> stored or transmitted.
+    See our <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a> for details.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn decline" id="cookie-decline">Decline</button>
+    <button class="cookie-btn accept"  id="cookie-accept">Accept &amp; Continue</button>
+  </div>
+</div>
+
+</body>
+</html>
