@@ -102,7 +102,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 14px; scroll-behavior: smooth; }
+html { font-size: 17.5px; scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
@@ -159,9 +159,9 @@ nav a:hover { color: var(--accent); background: #e8e0d0; }
 
 /* ── MAIN LAYOUT ── */
 main {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 14px 16px 0;
+  width: 100%;
+  padding: 14px 24px 0;
+  box-sizing: border-box;
 }
 
 /* ── STATS ROW ── */
@@ -223,20 +223,21 @@ main {
   padding: 12px 14px 16px;
   box-shadow: 0 4px 0 #08060400, inset 0 1px 0 #3a3020;
   margin-bottom: 12px;
-  overflow-x: auto;
+  overflow: hidden;
 }
 
 .kb-inner {
   display: flex;
   flex-direction: column;
   gap: 0;
-  min-width: 700px;
+  width: max-content;
+  transform-origin: top left;
 }
 
 /* function row */
 .fn-row {
   display: flex;
-  gap: 4px;
+  gap: 0;
   align-items: center;
   margin-bottom: 6px;
 }
@@ -263,36 +264,36 @@ main {
   border-top: 1px solid #5a4a36;
   border-bottom: 3px solid var(--key-bot);
   border-radius: 4px;
-  height: 36px;
-  min-width: 36px;
+  height: 45px;
+  min-width: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 11px;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   color: var(--key-txt);
   cursor: default;
   transition: background 0.06s, color 0.06s, transform 0.05s;
-  padding: 2px 4px;
+  padding: 2px 5px;
   text-align: center;
   line-height: 1.1;
   flex-shrink: 0;
   user-select: none;
 }
-.key .top-label { font-size: 8px; color: #6a5840; font-weight: 400; }
-.key .bot-label { font-size: 9px; font-weight: 700; }
+.key .top-label { font-size: 10px; color: #6a5840; font-weight: 400; }
+.key .bot-label { font-size: 11px; font-weight: 700; }
 
 /* widths */
-.w-esc  { min-width: 36px; }
-.w-15   { min-width: 54px; }
-.w-175  { min-width: 63px; }
-.w-20   { min-width: 72px; }
-.w-225  { min-width: 81px; }
-.w-275  { min-width: 99px; }
-.w-625  { min-width: 225px; }
-.tall   { height: 76px; justify-content: flex-end; padding-bottom: 5px; }
+.w-esc  { min-width: 45px; }
+.w-15   { min-width: 68px; }
+.w-175  { min-width: 79px; }
+.w-20   { min-width: 90px; }
+.w-225  { min-width: 101px; }
+.w-275  { min-width: 124px; }
+.w-625  { min-width: 281px; }
+.tall   { height: 95px; justify-content: flex-end; padding-bottom: 6px; }
 
 .key.pressed {
   background: var(--pressed);
@@ -319,15 +320,15 @@ main {
 }
 
 /* nav spacing */
-.nav-gap { height: 10px; }
-.nav-gap-sm { height: 4px; }
+.nav-gap { height: 13px; }
+.nav-gap-sm { height: 5px; }
 
 /* numpad grid */
 .num-grid {
   display: grid;
-  grid-template-columns: repeat(4, 36px);
-  grid-template-rows: repeat(5, 36px);
-  gap: 4px;
+  grid-template-columns: repeat(4, 45px);
+  grid-template-rows: repeat(5, 45px);
+  gap: 5px;
 }
 
 /* ── INFO ROW ── */
@@ -384,9 +385,9 @@ main {
 
 /* ── SECTIONS BELOW ── */
 .below-fold {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 24px 16px 48px;
+  width: 100%;
+  padding: 24px 24px 48px;
+  box-sizing: border-box;
 }
 
 .section-divider {
@@ -646,7 +647,7 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
 /* Leaderboard 728×90 — sits between nav and main */
 .ad-leaderboard {
   width: 100%;
-  max-width: 980px;
+  width: 100%;
   margin: 10px auto 0;
   min-height: 100px;
 }
@@ -1100,7 +1101,7 @@ const tested = new Set();
 function makeKey(def) {
   if (!def) {
     const sp = document.createElement('div');
-    sp.style.cssText = 'min-width:36px;height:36px;flex-shrink:0;';
+    sp.style.cssText = 'min-width:45px;height:45px;flex-shrink:0;';
     return sp;
   }
   const el = document.createElement('div');
@@ -1126,13 +1127,18 @@ function makeSpacer(h) {
 
 // Build function row
 const fnRow = document.getElementById('fn-row');
-KEY_DEFS.fn.forEach(k => {
+let fnNullCount = 0;
+KEY_DEFS.fn.forEach((k, i) => {
   if (k === null) {
     const g = document.createElement('div');
-    g.style.cssText = 'width:10px;flex-shrink:0;';
+    const gapW = fnNullCount === 0 ? 37 : 21; // big gap after Esc, smaller between groups
+    g.style.cssText = 'width:' + gapW + 'px;flex-shrink:0;';
     fnRow.appendChild(g);
+    fnNullCount++;
   } else {
-    fnRow.appendChild(makeKey(k));
+    const el = makeKey(k);
+    el.style.marginRight = '4px';
+    fnRow.appendChild(el);
   }
 });
 
@@ -1148,7 +1154,7 @@ KEY_DEFS.main.forEach(row => {
 // Build nav block
 const navBlock = document.getElementById('nav-block');
 NAV_ROWS.forEach(row => {
-  if (row === 'gap') { navBlock.appendChild(makeSpacer(10)); return; }
+  if (row === 'gap') { navBlock.appendChild(makeSpacer(13)); return; }
   const rowDiv = document.createElement('div');
   rowDiv.className = 'kb-row';
   row.forEach(k => rowDiv.appendChild(makeKey(k)));
@@ -1159,7 +1165,7 @@ NAV_ROWS.forEach(row => {
 const numBlock = document.getElementById('num-block');
 const grid = document.createElement('div');
 grid.className = 'num-grid';
-grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,36px);grid-template-rows:repeat(5,36px);gap:4px;';
+grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,45px);grid-template-rows:repeat(5,45px);gap:5px;';
 
 NUM_CELLS.forEach(cell => {
   const el = document.createElement('div');
@@ -1169,8 +1175,8 @@ NUM_CELLS.forEach(cell => {
   el.style.gridRow    = cell.rs  ? cell.r + ' / span ' + cell.rs  : cell.r.toString();
   el.style.gridColumn = cell.cs  ? cell.col + ' / span ' + cell.cs : cell.col.toString();
   if (cell.rs || cell.cs) {
-    if (cell.rs) { el.style.height = (36 * cell.rs + 4 * (cell.rs - 1)) + 'px'; el.style.justifyContent = 'flex-end'; el.style.paddingBottom = '5px'; }
-    if (cell.cs) { el.style.minWidth = (36 * cell.cs + 4 * (cell.cs - 1)) + 'px'; }
+    if (cell.rs) { el.style.height = (45 * cell.rs + 5 * (cell.rs - 1)) + 'px'; el.style.justifyContent = 'flex-end'; el.style.paddingBottom = '6px'; }
+    if (cell.cs) { el.style.minWidth = (45 * cell.cs + 5 * (cell.cs - 1)) + 'px'; }
   }
   if (!keyEls[cell.c]) { keyEls[cell.c] = []; total++; }
   keyEls[cell.c].push(el);
@@ -1464,5 +1470,25 @@ function closeModal(id) {
   </div>
 </div>
 
+
+<script>
+function scaleKeyboard() {
+  var inner = document.querySelector('.kb-inner');
+  var shell = document.querySelector('.kb-shell');
+  if (!inner || !shell) return;
+  // Reset transform so we can measure natural height
+  inner.style.transform = '';
+  inner.style.marginBottom = '';
+  var availableWidth = shell.clientWidth - 28; // padding: 14px each side
+  var naturalWidth = inner.scrollWidth;
+  var scale = Math.min(1, availableWidth / naturalWidth);
+  var naturalHeight = inner.offsetHeight;
+  inner.style.transform = 'scale(' + scale + ')';
+  // Collapse extra space left by scale
+  inner.style.marginBottom = ((naturalHeight * scale) - naturalHeight) + 'px';
+}
+window.addEventListener('load', scaleKeyboard);
+window.addEventListener('resize', scaleKeyboard);
+</script>
 </body>
 </html>
