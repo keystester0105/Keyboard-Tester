@@ -224,6 +224,8 @@ main {
   box-shadow: 0 4px 0 #08060400, inset 0 1px 0 #3a3020;
   margin-bottom: 12px;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .kb-inner {
@@ -1476,16 +1478,18 @@ function scaleKeyboard() {
   var inner = document.querySelector('.kb-inner');
   var shell = document.querySelector('.kb-shell');
   if (!inner || !shell) return;
-  // Reset transform so we can measure natural height
+  // Reset so we can measure natural dimensions
   inner.style.transform = '';
-  inner.style.marginBottom = '';
-  var availableWidth = shell.clientWidth - 28; // padding: 14px each side
+  inner.style.height = '';
+  shell.style.height = '';
+  var availableWidth = shell.clientWidth - 28; // 14px padding each side
   var naturalWidth = inner.scrollWidth;
-  var scale = Math.min(1, availableWidth / naturalWidth);
-  var naturalHeight = inner.offsetHeight;
+  var naturalHeight = inner.scrollHeight;
+  var scale = availableWidth / naturalWidth;
   inner.style.transform = 'scale(' + scale + ')';
-  // Collapse extra space left by scale
-  inner.style.marginBottom = ((naturalHeight * scale) - naturalHeight) + 'px';
+  inner.style.transformOrigin = 'top left';
+  // Shrink shell to scaled height so nothing overlaps below
+  shell.style.height = (naturalHeight * scale + 28) + 'px'; // 12px top + 16px bottom padding
 }
 window.addEventListener('load', scaleKeyboard);
 window.addEventListener('resize', scaleKeyboard);
