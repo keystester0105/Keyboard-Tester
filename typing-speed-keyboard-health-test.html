@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard Health Test for Typists – Check Keys Before a Typing Test | KeysTester.com</title>
+<meta name="description" content="Verify every key on your keyboard is working before a typing speed test. Free online keyboard health check for typists — detect broken keys, stuck keys, and missed inputs instantly.">
+<meta name="keywords" content="keyboard health test, keyboard test for typing, typing test keyboard check, keyboard test before typing speed test, test all keys before typing, keyboard check for typists">
+<meta name="robots" content="index, follow">
+<meta name="author" content="KeysTester.com">
+<link rel="canonical" href="https://KeysTester.com/typing-speed-keyboard-health-test">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Keyboard Health Test for Typists — Free Key Check Online">
+<meta property="og:description" content="Verify every key works before a typing speed test. Free keyboard health check — detect broken or stuck keys in seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://KeysTester.com/typing-speed-keyboard-health-test">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keyboard Health Test for Typists">
+<meta name="twitter:description" content="Free online keyboard check for typists. Make sure every key works before your typing speed test.">
+
+<!-- Schema.org WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Keyboard Health Test for Typists",
+  "url": "https://KeysTester.com/typing-speed-keyboard-health-test",
+  "description": "Free online keyboard health check for typists. Verify every key is working before a typing speed test to avoid missed characters and false errors.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "featureList": ["Pre-typing-test keyboard check", "All 104 keys verified", "Stuck key detection", "Key response confirmation", "No download required"]
+}
+</script>
+
+<!-- FAQ Schema for rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+        {{"@type":"Question","name":'Why should I test my keyboard before a typing speed test?',"acceptedAnswer":{{"@type":"Answer","text":"A faulty key — even one that misses inputs only occasionally — will silently reduce your WPM and inflate your error rate. You might assume you're a worse typist than you are, or fail a typing assessment unfairly. Running a 2-minute keyboard health check before any typing test ensures the hardware is not the limiting factor in your performance."}}}},
+    {{"@type":"Question","name":'Which keys matter most for typing tests?',"acceptedAnswer":{{"@type":"Answer","text":'The home-row keys (A, S, D, F, G, H, J, K, L, semicolon) and Space bar are the most frequently struck in English typing tests and should be your first priority. After those, Shift (both sides), E, T, R, O, I, N — the highest-frequency letters in English — are critical. Backspace also matters if the test penalises uncorrected errors. This tester highlights all of these on the visual layout.'}}}},
+    {{"@type":"Question","name":"My Space bar sometimes doesn't register — will that hurt my typing test score?","acceptedAnswer":{{"@type":"Answer","text":'Significantly, yes. The Space bar is the single most frequently pressed key in any word-per-minute test. Even a 5% miss rate on the Space bar will cause missed word separations, inflating your error count and collapsing your WPM. If Space registers inconsistently on this tester, clean underneath it with compressed air or replace the stabiliser foam if your keyboard uses one.'}}}},
+    {{"@type":"Question","name":"What is a 'stuck key' and how does it affect typing?","acceptedAnswer":{{"@type":"Answer","text":"A stuck key is one that physically doesn't spring back fully after being pressed, or one whose switch chatters (fires multiple keydown events per press). In a typing test, a chattering Space or letter key produces duplicate characters (e.g. typing 'the' gives 'tthe') which counts as errors and slows your WPM. On this tester, chattering appears as a key rapidly re-highlighting without being pressed again."}}}},
+    {{"@type":"Question","name":'Can I use this to warm up my fingers before a typing test?',"acceptedAnswer":{{"@type":"Answer","text":'Yes — pressing every key systematically is a gentle warm-up routine that familiarises your fingers with the keyboard layout and gives each key a chance to loosen up. Many competitive typists do a quick key-press run as part of their pre-test ritual, and this tester gives you a visual confirmation that your fingers and the keyboard are both ready.'}}}}
+  ]
+}
+</script>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P20MSBD1W3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-P20MSBD1W3', {
+    page_title: 'Typing Speed Keyboard Health Test',
+    page_location: window.location.href,
+    anonymize_ip: true
+  });
+  window._ga4_first_key_sent = false;
+  window.trackFirstKey = function() {
+    if (!window._ga4_first_key_sent) {
+      gtag('event', 'keyboard_test_started', {event_category:'engagement'});
+      window._ga4_first_key_sent = true;
+    }
+  };
+  window.trackTestComplete = function(total) {
+    gtag('event', 'keyboard_test_complete', {event_category:'engagement',event_label:'all_keys_tested',value:total});
+  };
+</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #f4efe6;
+  --surface:   #ece6d9;
+  --border:    #c8b89a;
+  --border2:   #b0a080;
+  --text:      #2a2016;
+  --muted:     #7a6a50;
+  --accent:    #8b1a1a;
+  --key-bg:    #2e2418;
+  --key-top:   #3e3226;
+  --key-bdr:   #4e4030;
+  --key-txt:   #9a8866;
+  --key-bot:   #14100a;
+  --pressed:   #c8a030;
+  --tested:    #2a5a1e;
+  --tested-t:  #5ab840;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:17.5px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;font-weight:400;line-height:1.6;}
+
+/* HEADER */
+header{background:var(--text);color:#f0e8d8;text-align:center;padding:14px 20px 12px;border-bottom:3px solid var(--accent);}
+header h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:600;letter-spacing:.02em;line-height:1.1;}
+header p{font-family:'Source Serif 4',serif;font-style:italic;font-size:.82rem;color:#a09070;margin-top:3px;letter-spacing:.04em;}
+
+/* NAV */
+nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;justify-content:center;gap:0;flex-wrap:wrap;}
+nav a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 16px;border-right:1px solid var(--border);transition:color .15s,background .15s;}
+nav a:first-child{border-left:1px solid var(--border);}
+nav a:hover{color:var(--accent);background:#e8e0d0;}
+
+/* MAIN */
+main{width:100%;padding:14px 24px 0;box-sizing:border-box;}
+
+/* STATS ROW */
+.stats-row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 16px;margin-bottom:12px;flex-wrap:wrap;}
+.stat-group{display:flex;gap:20px;align-items:center;}
+.stat{text-align:center;}
+.stat-n{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1;color:var(--text);}
+.stat-l{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.divider-v{width:1px;height:32px;background:var(--border);}
+.progress-wrap{flex:1;min-width:130px;}
+.progress-track{height:5px;background:#d4c8b0;border-radius:3px;border:1px solid var(--border);overflow:hidden;margin-bottom:4px;}
+.progress-fill{height:100%;background:var(--tested);border-radius:3px;transition:width .3s ease;width:0%;}
+.progress-lbl{font-size:.68rem;color:var(--muted);text-align:right;}
+.btn-wrap{display:flex;gap:7px;margin-left:auto;}
+.btn{background:var(--surface);border:1px solid var(--border);border-bottom:2px solid var(--border2);border-radius:4px;color:var(--text);font-family:'Lato',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 13px;cursor:pointer;transition:background .12s;}
+.btn:hover{background:#ddd6c4;}
+.btn:active{transform:translateY(1px);border-bottom-width:1px;}
+.btn.accent{border-color:var(--accent);color:var(--accent);}
+
+/* KEYBOARD SHELL */
+.kb-shell{background:#1c1510;border:2px solid #100d08;border-radius:10px;padding:12px 14px 16px;box-shadow:0 4px 0 #08060400,inset 0 1px 0 #3a3020;margin-bottom:12px;overflow:hidden;width:100%;box-sizing:border-box;}
+.kb-inner{display:flex;flex-direction:column;gap:0;width:max-content;transform-origin:top left;}
+.fn-row{display:flex;gap:0;align-items:center;margin-bottom:6px;}
+.kb-body{display:flex;gap:10px;align-items:flex-start;}
+.main-block,.nav-block,.num-block{display:flex;flex-direction:column;gap:4px;flex-shrink:0;}
+.kb-row{display:flex;gap:4px;align-items:flex-start;}
+
+/* KEY */
+.key{background:var(--key-bg);border:1px solid var(--key-bdr);border-top:1px solid #5a4a36;border-bottom:3px solid var(--key-bot);border-radius:4px;height:45px;min-width:45px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-family:'Lato',sans-serif;font-weight:700;color:var(--key-txt);cursor:default;transition:background .06s,color .06s,transform .05s;padding:2px 5px;text-align:center;line-height:1.1;flex-shrink:0;user-select:none;}
+.key .top-label{font-size:10px;color:#6a5840;font-weight:400;}
+.key .bot-label{font-size:11px;font-weight:700;}
+.w-esc{min-width:45px;}.w-15{min-width:68px;}.w-175{min-width:79px;}.w-20{min-width:90px;}.w-225{min-width:101px;}.w-275{min-width:124px;}.w-625{min-width:281px;}
+.key.pressed{background:var(--pressed);border-color:#e0b840;border-top-color:#f0d060;border-bottom:1px solid #604810;color:#2a1a00;transform:translateY(2px);}
+.key.pressed .top-label{color:#4a3000;}
+.key.done{background:var(--tested);border-color:#3a6a28;border-top-color:#4a8030;border-bottom-color:#0e2808;color:var(--tested-t);}
+.key.done .top-label{color:#3a8020;}
+.key.pressed.done{background:var(--pressed);color:#2a1a00;}
+
+/* INFO ROW */
+.info-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 16px;}
+.info-card h2{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:600;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:7px;margin-bottom:9px;letter-spacing:.03em;}
+.last-key-name{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--text);line-height:1;min-height:32px;}
+.last-key-code{font-size:.72rem;color:var(--muted);margin-top:3px;}
+.ki-table{width:100%;}
+.ki-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #ddd0b8;}
+.ki-row:last-child{border-bottom:none;}
+.ki-prop{font-size:.72rem;color:var(--muted);}
+.ki-val{font-size:.72rem;color:var(--text);font-weight:700;font-family:'Courier New',monospace;}
+.legend{display:flex;gap:16px;align-items:center;justify-content:center;padding:6px 0 2px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted);}
+.swatch{width:16px;height:10px;border-radius:2px;border-bottom:2px solid rgba(0,0,0,.4);}
+.sw-n{background:var(--key-bg);}.sw-p{background:var(--pressed);}.sw-d{background:var(--tested);}
+
+/* BELOW FOLD */
+.below-fold{width:100%;padding:24px 24px 48px;box-sizing:border-box;}
+.section-divider{border:none;border-top:2px solid var(--border);margin:28px 0;position:relative;}
+.section-divider::before{content:attr(data-label);position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 12px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-family:'Lato',sans-serif;}
+
+/* HOW-TO */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:16px;}
+.how-step{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;padding:14px 16px;}
+.step-num{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent);line-height:1;margin-bottom:6px;}
+.step-title{font-weight:700;font-size:.82rem;color:var(--text);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;}
+.step-desc{font-size:.78rem;color:var(--muted);line-height:1.5;}
+
+/* FAQ */
+.faq-list{margin-top:16px;display:flex;flex-direction:column;gap:0;}
+.faq-item{border:1px solid var(--border);border-bottom:none;background:var(--surface);}
+.faq-item:first-child{border-radius:6px 6px 0 0;}
+.faq-item:last-child{border-radius:0 0 6px 6px;border-bottom:1px solid var(--border);}
+.faq-q{width:100%;background:none;border:none;padding:13px 18px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Source Serif 4',serif;font-size:.88rem;font-weight:400;color:var(--text);}
+.faq-q:hover{background:#e8e0d0;}
+.faq-icon{font-size:1rem;color:var(--accent);font-family:'Playfair Display',serif;flex-shrink:0;transition:transform .2s;}
+.faq-a{display:none;padding:0 18px 14px;font-size:.8rem;color:var(--muted);line-height:1.65;border-top:1px solid var(--border);}
+.faq-a p{margin-bottom:6px;}.faq-a p:last-child{margin-bottom:0;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-item.open .faq-a{display:block;}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:16px;}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;}
+.feat-icon{font-size:1.4rem;margin-bottom:6px;color:var(--accent);font-family:'Playfair Display',serif;}
+.feat-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text);margin-bottom:4px;}
+.feat-desc{font-size:.73rem;color:var(--muted);line-height:1.4;}
+.sec-h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--text);letter-spacing:.01em;}
+.sec-lead{font-size:.82rem;color:var(--muted);margin-top:5px;font-style:italic;font-family:'Source Serif 4',serif;}
+
+/* RELATED LINKS */
+.related-links{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;}
+.related-link{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:7px 14px;font-size:.75rem;color:var(--accent);text-decoration:none;letter-spacing:.05em;font-family:'Lato',sans-serif;transition:background .15s,color .15s;}
+.related-link:hover{background:#ddd6c4;color:var(--text);}
+
+/* FOOTER */
+footer{background:var(--text);color:#7a6a50;text-align:center;padding:18px 20px;font-size:.72rem;letter-spacing:.06em;border-top:3px solid var(--accent);}
+footer a{color:#a09070;text-decoration:none;}
+footer a:hover{color:#c8a030;text-decoration:underline;}
+.footer-links{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.footer-links a{font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;color:#a09070;text-decoration:none;}
+.footer-links a:hover{color:#c8a030;text-decoration:underline;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,8,4,.82);z-index:10000;align-items:flex-start;justify-content:center;padding:24px 16px 40px;overflow-y:auto;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--bg);border:2px solid var(--border);border-radius:10px;max-width:760px;width:100%;margin:auto;box-shadow:0 16px 60px rgba(0,0,0,.5);overflow:hidden;animation:modalIn .22s ease;}
+@keyframes modalIn{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.modal-header{background:var(--text);color:#f0e8d8;padding:18px 24px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:3px solid var(--accent);}
+.modal-header h2{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:600;line-height:1.2;}
+.modal-header p{font-size:.72rem;color:#7a6a50;margin-top:4px;font-style:italic;}
+.modal-close{background:none;border:1px solid #4a3a28;border-radius:4px;color:#a09070;font-size:1.1rem;width:32px;height:32px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s;}
+.modal-close:hover{border-color:var(--accent);color:#fff;}
+.modal-body{padding:24px 28px 32px;max-height:70vh;overflow-y:auto;}
+.modal-body h3{font-family:"Playfair Display",serif;font-size:1rem;color:var(--accent);margin:22px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.modal-body h3:first-child{margin-top:0;}
+.modal-body p{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:8px;}
+.modal-body ul{margin:6px 0 10px 18px;font-size:.8rem;color:var(--muted);line-height:1.7;}
+.modal-body ul li{margin-bottom:4px;}
+.modal-body strong{color:var(--text);font-weight:700;}
+.modal-body a{color:var(--accent);}
+.modal-body code{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-size:.75rem;font-family:"Courier New",monospace;color:var(--text);}
+.modal-effective{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:10px 14px;font-size:.73rem;color:var(--muted);margin-bottom:18px;display:flex;gap:20px;flex-wrap:wrap;}
+.modal-effective span strong{color:var(--text);}
+
+/* COOKIE BANNER */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#1e1810;color:#c8b89a;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;z-index:9999;border-top:2px solid var(--accent);font-size:.75rem;line-height:1.5;box-shadow:0 -4px 20px rgba(0,0,0,.3);transform:translateY(0);transition:transform .3s ease;}
+#cookie-banner.hidden{transform:translateY(110%);}
+#cookie-banner p{flex:1;min-width:220px;}
+#cookie-banner a{color:#c8a030;text-decoration:underline;}
+.cookie-btns{display:flex;gap:8px;flex-shrink:0;}
+.cookie-btn{padding:7px 16px;border-radius:4px;border:none;font-size:.72rem;font-family:'Lato',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-weight:700;}
+.cookie-btn.accept{background:var(--accent);color:#fff;}
+.cookie-btn.accept:hover{background:#a02020;}
+.cookie-btn.decline{background:transparent;border:1px solid #5a4a36;color:#8a7a60;}
+.cookie-btn.decline:hover{border-color:#8a7a60;}
+
+/* AD SLOTS */
+.ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:6px;text-align:center;overflow:hidden;position:relative;}
+.ad-slot::before{content:'Advertisement';display:block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#b0a080;padding:4px 0 2px;font-family:'Lato',sans-serif;}
+.ad-leaderboard{width:100%;margin:10px auto 0;min-height:100px;}
+.ad-leaderboard ins{display:block;min-height:90px;}
+.ad-rectangle{min-height:290px;width:336px;flex-shrink:0;}
+.ad-rectangle ins{display:block;min-height:280px;}
+.ad-banner{width:100%;min-height:100px;margin:0;}
+.ad-banner ins{display:block;min-height:90px;}
+.content-ad-row{display:flex;gap:24px;align-items:flex-start;}
+.content-col{flex:1;min-width:0;}
+
+@media(max-width:760px){
+  .info-row{grid-template-columns:1fr;}
+  .stats-row{flex-wrap:wrap;}
+  .btn-wrap{width:100%;}
+  .btn{flex:1;text-align:center;}
+  header h1{font-size:1.3rem;}
+  .ad-rectangle{width:100%;min-height:260px;}
+  .content-ad-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Keyboard Health Test for Typists</h1>
+  <p>Verify every key works perfectly before your next typing speed test or typing session</p>
+</header>
+
+<nav aria-label="Site navigation">
+  <a href="/">Home</a>
+  <a href="#tester">Tester</a>
+  <a href="#how-to-use">How to Use</a>
+  <a href="#features">Features</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<!-- AD: Leaderboard 728×90 -->
+<div class="ad-slot ad-leaderboard" aria-label="Advertisement" role="complementary">
+  <ins class="adsbygoogle" style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="1111111111"
+       data-ad-format="horizontal"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<main id="tester" aria-label="Keyboard tester">
+
+  <!-- Stats row -->
+  <div class="stats-row" role="status" aria-live="polite">
+    <div class="stat-group">
+      <div class="stat"><div class="stat-n" id="s-tested">0</div><div class="stat-l">Tested</div></div>
+      <div class="divider-v"></div>
+      <div class="stat"><div class="stat-n" id="s-remain">—</div><div class="stat-l">Remaining</div></div>
+      <div class="divider-v"></div>
+      <div class="stat"><div class="stat-n" id="s-pct">0%</div><div class="stat-l">Complete</div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
+      <div class="progress-lbl" id="prog-lbl">0 / 0 keys</div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn" id="btn-reset" aria-label="Reset all tested keys">Reset</button>
+      <button class="btn accent" id="btn-show" aria-label="Highlight untested keys">Show untested</button>
+    </div>
+  </div>
+
+  <!-- Virtual keyboard -->
+  <div class="kb-shell" role="application" aria-label="Virtual keyboard layout">
+    <div class="kb-inner" id="kb-inner">
+      <div class="fn-row" id="fn-row"></div>
+      <div class="kb-body">
+        <div class="main-block" id="main-block"></div>
+        <div class="nav-block"  id="nav-block"></div>
+        <div class="num-block"  id="num-block"></div>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <div class="legend-item"><div class="swatch sw-n"></div>Not tested</div>
+        <div class="legend-item"><div class="swatch sw-p"></div>Pressed</div>
+        <div class="legend-item"><div class="swatch sw-d"></div>Tested ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key info -->
+  <div class="info-row">
+    <div class="info-card">
+      <h2>Last Key Pressed</h2>
+      <div class="last-key-name" id="lk-name" aria-live="polite">—</div>
+      <div class="last-key-code" id="lk-code">Press any key to begin</div>
+    </div>
+    <div class="info-card">
+      <h2>Key Properties</h2>
+      <div class="ki-table" role="table" aria-label="Key event properties">
+        <div class="ki-row"><span class="ki-prop">code</span><span class="ki-val" id="ki-code">—</span></div>
+        <div class="ki-row"><span class="ki-prop">key</span><span class="ki-val" id="ki-key">—</span></div>
+        <div class="ki-row"><span class="ki-prop">keyCode</span><span class="ki-val" id="ki-keycode">—</span></div>
+        <div class="ki-row"><span class="ki-prop">which</span><span class="ki-val" id="ki-which">—</span></div>
+        <div class="ki-row"><span class="ki-prop">location</span><span class="ki-val" id="ki-location">—</span></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BELOW FOLD -->
+<div class="below-fold">
+  <div class="content-ad-row">
+    <div class="content-col">
+
+      <hr class="section-divider" data-label="How to Use" id="how-to-use">
+      <section aria-labelledby="htu-h">
+        <h2 class="sec-h2" id="htu-h">How to Use</h2>
+        <p class="sec-lead">A quick guide to getting the most accurate results.</p>
+        <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Run this check before your typing test</div>
+        <div class="step-desc">Open this page and complete the key check before starting any typing speed test. A broken or sticky key will silently hurt your WPM score and accuracy without you realising it.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Press every key at typing speed</div>
+        <div class="step-desc">Don't press keys slowly — press them at the pace you would actually type. Some sticky or worn keys only miss inputs under normal typing pressure and rhythm.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Pay close attention to home-row keys</div>
+        <div class="step-desc">The keys A S D F G H J K L and the Space bar are the most frequently used in typing tests. Make sure each of these registers reliably and quickly before you begin.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Check the progress bar</div>
+        <div class="step-desc">The progress bar shows what percentage of your keys have been tested. Aim for 100% before any important typing assessment.</div>
+      </div></div>
+      </section>
+
+      <hr class="section-divider" data-label="Features" id="features">
+      <section aria-labelledby="feat-h">
+        <h2 class="sec-h2" id="feat-h">Features</h2>
+        <p class="sec-lead">Everything built into this free browser-based tester.</p>
+        <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">✍️</div>
+        <div class="feat-title">Typist-Focused Workflow</div>
+        <div class="feat-desc">Designed to be completed quickly before any typing session — from casual practice to formal WPM assessments.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🏠</div>
+        <div class="feat-title">Home Row Priority</div>
+        <div class="feat-desc">The visual layout makes it easy to focus on the critical home-row and most-used typing keys first.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Instant Key Confirmation</div>
+        <div class="feat-desc">Every key lights up the moment it fires — no lag that might mask a slow or faulty key switch.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">Progress Tracking</div>
+        <div class="feat-desc">A live progress bar and counter show exactly how many keys remain untested, so you know when you're done.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🛡</div>
+        <div class="feat-title">Zero Data Collection</div>
+        <div class="feat-desc">No keystrokes are logged or transmitted. Your practice content and inputs stay completely private.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔑</div>
+        <div class="feat-title">All Keys Mapped</div>
+        <div class="feat-desc">Letters, numbers, punctuation, function keys, Space, Backspace, Shift — every key a typist uses is covered.</div>
+      </div></div>
+      </section>
+
+      <hr class="section-divider" data-label="FAQ" id="faq">
+      <section aria-labelledby="faq-h">
+        <h2 class="sec-h2" id="faq-h">Frequently Asked Questions</h2>
+        <p class="sec-lead">Answers to common questions about keyboard health test for typists.</p>
+        <div class="faq-list" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Why should I test my keyboard before a typing speed test?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>A faulty key — even one that misses inputs only occasionally — will silently reduce your WPM and inflate your error rate. You might assume you're a worse typist than you are, or fail a typing assessment unfairly. Running a 2-minute keyboard health check before any typing test ensures the hardware is not the limiting factor in your performance.</p></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Which keys matter most for typing tests?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>The home-row keys (A, S, D, F, G, H, J, K, L, semicolon) and Space bar are the most frequently struck in English typing tests and should be your first priority. After those, Shift (both sides), E, T, R, O, I, N — the highest-frequency letters in English — are critical. Backspace also matters if the test penalises uncorrected errors. This tester highlights all of these on the visual layout.</p></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>My Space bar sometimes doesn't register — will that hurt my typing test score?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Significantly, yes. The Space bar is the single most frequently pressed key in any word-per-minute test. Even a 5% miss rate on the Space bar will cause missed word separations, inflating your error count and collapsing your WPM. If Space registers inconsistently on this tester, clean underneath it with compressed air or replace the stabiliser foam if your keyboard uses one.</p></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>What is a 'stuck key' and how does it affect typing?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>A stuck key is one that physically doesn't spring back fully after being pressed, or one whose switch chatters (fires multiple keydown events per press). In a typing test, a chattering Space or letter key produces duplicate characters (e.g. typing 'the' gives 'tthe') which counts as errors and slows your WPM. On this tester, chattering appears as a key rapidly re-highlighting without being pressed again.</p></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false">
+          <span>Can I use this to warm up my fingers before a typing test?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><p>Yes — pressing every key systematically is a gentle warm-up routine that familiarises your fingers with the keyboard layout and gives each key a chance to loosen up. Many competitive typists do a quick key-press run as part of their pre-test ritual, and this tester gives you a visual confirmation that your fingers and the keyboard are both ready.</p></div>
+      </div></div>
+      </section>
+
+      <hr class="section-divider" data-label="Related Tools">
+      <section aria-labelledby="rel-h">
+        <h2 class="sec-h2" id="rel-h">Related Tools</h2>
+        <p class="sec-lead">More free keyboard utilities on KeysTester.com.</p>
+        <div class="related-links">
+      <a class="related-link" href="/">Keyboard Test Online (Home)</a>
+      <a class="related-link" href="/keyboard-not-working">Keyboard Not Working</a>
+      <a class="related-link" href="/laptop-keyboard-test">Laptop Keyboard Test</a>
+      <a class="related-link" href="/mechanical-keyboard-test">Mechanical Keyboard Test</a>
+      <a class="related-link" href="/keyboard-key-code-finder">Keyboard Key Code Finder</a>
+        </div>
+      </section>
+
+      <hr class="section-divider" data-label="About" style="margin-top:0;">
+      <section aria-labelledby="about-h">
+        <h2 class="sec-h2" id="about-h">About This Tool</h2>
+        <p class="sec-lead" style="max-width:680px;">Keyboard Health Test for Typists is a free pre-session diagnostic tool built for anyone who cares about typing accuracy — from students taking timed assessments to professionals aiming to improve their WPM score. Verify that every key is responding correctly before you begin, so your typing performance reflects your skill, not your hardware.</p>
+      </section>
+
+    </div><!-- /.content-col -->
+
+    <!-- AD: Rectangle sidebar 336×280 -->
+    <div class="ad-slot ad-rectangle" aria-label="Advertisement" role="complementary" style="position:sticky;top:16px;">
+      <ins class="adsbygoogle" style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="2222222222"
+           data-ad-format="rectangle"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div><!-- /.content-ad-row -->
+
+  <!-- AD: Banner 728×90 -->
+  <div class="ad-slot ad-banner" aria-label="Advertisement" role="complementary" style="margin:20px 0;">
+    <ins class="adsbygoogle" style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="3333333333"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div><!-- /.below-fold -->
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <span style="color:#4a3a28;">|</span>
+    <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a>
+    <span style="color:#4a3a28;">|</span>
+    <a href="#" onclick="openModal('terms');return false;">Terms &amp; Conditions</a>
+  </div>
+  <p>&copy; 2025 KeysTester.com &mdash; Free online keyboard diagnostic tools</p>
+  <p style="margin-top:5px;">No keystrokes are ever stored or transmitted. Runs entirely in your browser.</p>
+</footer>
+
+<script>
+(function(){
+const KEY_DEFS={fn:[{l:'Esc',c:'Escape',w:'w-esc'},null,{l:'F1',c:'F1'},{l:'F2',c:'F2'},{l:'F3',c:'F3'},{l:'F4',c:'F4'},null,{l:'F5',c:'F5'},{l:'F6',c:'F6'},{l:'F7',c:'F7'},{l:'F8',c:'F8'},null,{l:'F9',c:'F9'},{l:'F10',c:'F10'},{l:'F11',c:'F11'},{l:'F12',c:'F12'}],main:[[{l:'`',l2:'~',c:'Backquote'},{l:'1',l2:'!',c:'Digit1'},{l:'2',l2:'@',c:'Digit2'},{l:'3',l2:'#',c:'Digit3'},{l:'4',l2:'$',c:'Digit4'},{l:'5',l2:'%',c:'Digit5'},{l:'6',l2:'^',c:'Digit6'},{l:'7',l2:'&',c:'Digit7'},{l:'8',l2:'*',c:'Digit8'},{l:'9',l2:'(',c:'Digit9'},{l:'0',l2:')',c:'Digit0'},{l:'-',l2:'_',c:'Minus'},{l:'=',l2:'+',c:'Equal'},{l:'Backspace',c:'Backspace',w:'w-175'}],[{l:'Tab',c:'Tab',w:'w-15'},{l:'Q',c:'KeyQ'},{l:'W',c:'KeyW'},{l:'E',c:'KeyE'},{l:'R',c:'KeyR'},{l:'T',c:'KeyT'},{l:'Y',c:'KeyY'},{l:'U',c:'KeyU'},{l:'I',c:'KeyI'},{l:'O',c:'KeyO'},{l:'P',c:'KeyP'},{l:'[',l2:'{',c:'BracketLeft'},{l:']',l2:'}',c:'BracketRight'},{l:'\\',l2:'|',c:'Backslash',w:'w-15'}],[{l:'Caps Lock',c:'CapsLock',w:'w-175'},{l:'A',c:'KeyA'},{l:'S',c:'KeyS'},{l:'D',c:'KeyD'},{l:'F',c:'KeyF'},{l:'G',c:'KeyG'},{l:'H',c:'KeyH'},{l:'J',c:'KeyJ'},{l:'K',c:'KeyK'},{l:'L',c:'KeyL'},{l:';',l2:':',c:'Semicolon'},{l:"'",l2:'"',c:'Quote'},{l:'Enter',c:'Enter',w:'w-20'}],[{l:'Shift',c:'ShiftLeft',w:'w-225'},{l:'Z',c:'KeyZ'},{l:'X',c:'KeyX'},{l:'C',c:'KeyC'},{l:'V',c:'KeyV'},{l:'B',c:'KeyB'},{l:'N',c:'KeyN'},{l:'M',c:'KeyM'},{l:',',l2:'<',c:'Comma'},{l:'.',l2:'>',c:'Period'},{l:'/',l2:'?',c:'Slash'},{l:'Shift',c:'ShiftRight',w:'w-275'}],[{l:'Ctrl',c:'ControlLeft',w:'w-15'},{l:'Win',c:'MetaLeft',w:'w-15'},{l:'Alt',c:'AltLeft',w:'w-15'},{l:'Space',c:'Space',w:'w-625'},{l:'Alt',c:'AltRight',w:'w-15'},{l:'Win',c:'MetaRight',w:'w-15'},{l:'Menu',c:'ContextMenu',w:'w-15'},{l:'Ctrl',c:'ControlRight',w:'w-15'}]]};
+const NAV_ROWS=[[{l:'PrtSc',c:'PrintScreen'},{l:'ScrLk',c:'ScrollLock'},{l:'Pause',c:'Pause'}],'gap',[{l:'Ins',c:'Insert'},{l:'Home',c:'Home'},{l:'PgUp',c:'PageUp'}],[{l:'Del',c:'Delete'},{l:'End',c:'End'},{l:'PgDn',c:'PageDown'}],'gap',[null,{l:'↑',c:'ArrowUp'},null],[{l:'←',c:'ArrowLeft'},{l:'↓',c:'ArrowDown'},{l:'→',c:'ArrowRight'}]];
+const NUM_CELLS=[{l:'NumLk',c:'NumLock',r:1,col:1},{l:'/',c:'NumpadDivide',r:1,col:2},{l:'*',c:'NumpadMultiply',r:1,col:3},{l:'-',c:'NumpadSubtract',r:1,col:4},{l:'7',c:'Numpad7',r:2,col:1},{l:'8',c:'Numpad8',r:2,col:2},{l:'9',c:'Numpad9',r:2,col:3},{l:'+',c:'NumpadAdd',r:2,col:4,rs:2},{l:'4',c:'Numpad4',r:3,col:1},{l:'5',c:'Numpad5',r:3,col:2},{l:'6',c:'Numpad6',r:3,col:3},{l:'1',c:'Numpad1',r:4,col:1},{l:'2',c:'Numpad2',r:4,col:2},{l:'3',c:'Numpad3',r:4,col:3},{l:'Enter',c:'NumpadEnter',r:4,col:4,rs:2},{l:'0',c:'Numpad0',r:5,col:1,cs:2},{l:'.',c:'NumpadDecimal',r:5,col:3}];
+const keyEls={};let total=0;const tested=new Set();
+function makeKey(def){if(!def){const sp=document.createElement('div');sp.style.cssText='min-width:45px;height:45px;flex-shrink:0;';return sp;}const el=document.createElement('div');el.className='key'+(def.w?' '+def.w:'');el.setAttribute('aria-label',def.c);if(def.l2){el.innerHTML='<span class="top-label">'+def.l2+'</span><span class="bot-label">'+def.l+'</span>';}else{el.innerHTML='<span class="bot-label">'+def.l+'</span>';}if(!keyEls[def.c]){keyEls[def.c]=[];total++;}keyEls[def.c].push(el);return el;}
+function makeSpacer(h){const d=document.createElement('div');d.style.height=h+'px';return d;}
+const fnRow=document.getElementById('fn-row');let fnNullCount=0;
+KEY_DEFS.fn.forEach(k=>{if(k===null){const g=document.createElement('div');const gapW=fnNullCount===0?37:21;g.style.cssText='width:'+gapW+'px;flex-shrink:0;';fnRow.appendChild(g);fnNullCount++;}else{const el=makeKey(k);el.style.marginRight='4px';fnRow.appendChild(el);}});
+const mainBlock=document.getElementById('main-block');KEY_DEFS.main.forEach(row=>{const rowDiv=document.createElement('div');rowDiv.className='kb-row';row.forEach(k=>rowDiv.appendChild(makeKey(k)));mainBlock.appendChild(rowDiv);});
+const navBlock=document.getElementById('nav-block');NAV_ROWS.forEach(row=>{if(row==='gap'){navBlock.appendChild(makeSpacer(13));return;}const rowDiv=document.createElement('div');rowDiv.className='kb-row';row.forEach(k=>rowDiv.appendChild(makeKey(k)));navBlock.appendChild(rowDiv);});
+const numBlock=document.getElementById('num-block');const grid=document.createElement('div');grid.className='num-grid';grid.style.cssText='display:grid;grid-template-columns:repeat(4,45px);grid-template-rows:repeat(5,45px);gap:5px;';
+NUM_CELLS.forEach(cell=>{const el=document.createElement('div');el.className='key';el.setAttribute('aria-label',cell.c);el.innerHTML='<span class="bot-label">'+cell.l+'</span>';el.style.gridRow=cell.rs?cell.r+' / span '+cell.rs:cell.r.toString();el.style.gridColumn=cell.cs?cell.col+' / span '+cell.cs:cell.col.toString();if(cell.rs){el.style.height=(45*cell.rs+5*(cell.rs-1))+'px';el.style.justifyContent='flex-end';el.style.paddingBottom='6px';}if(cell.cs){el.style.minWidth=(45*cell.cs+5*(cell.cs-1))+'px';}if(!keyEls[cell.c]){keyEls[cell.c]=[];total++;}keyEls[cell.c].push(el);grid.appendChild(el);});
+numBlock.appendChild(grid);
+document.getElementById('s-remain').textContent=total;document.getElementById('prog-lbl').textContent='0 / '+total+' keys';
+function updateStats(){const n=tested.size;const pct=Math.round(n/total*100);document.getElementById('s-tested').textContent=n;document.getElementById('s-remain').textContent=total-n;document.getElementById('s-pct').textContent=pct+'%';document.getElementById('prog-fill').style.width=pct+'%';document.getElementById('prog-lbl').textContent=n+' / '+total+' keys';if(n===total&&window.trackTestComplete)window.trackTestComplete(total);}
+const LOC=['Standard','Left','Right','Numpad','Mobile','Joystick'];
+document.addEventListener('keydown',e=>{e.preventDefault();const code=e.code;(keyEls[code]||[]).forEach(el=>el.classList.add('pressed'));if(keyEls[code]&&!tested.has(code)){tested.add(code);keyEls[code].forEach(el=>el.classList.add('done'));updateStats();}const disp=e.key===' '?'Space':e.key;document.getElementById('lk-name').textContent=disp;document.getElementById('lk-code').textContent=code;document.getElementById('ki-code').textContent=e.code;document.getElementById('ki-key').textContent=e.key;document.getElementById('ki-keycode').textContent=e.keyCode;document.getElementById('ki-which').textContent=e.which;document.getElementById('ki-location').textContent=LOC[e.location]||e.location;});
+document.addEventListener('keyup',e=>{e.preventDefault();(keyEls[e.code]||[]).forEach(el=>el.classList.remove('pressed'));});
+document.getElementById('btn-reset').addEventListener('click',()=>{tested.clear();Object.values(keyEls).flat().forEach(el=>el.classList.remove('pressed','done'));['lk-name','lk-code','ki-code','ki-key','ki-keycode','ki-which','ki-location'].forEach(id=>{document.getElementById(id).textContent='—';});document.getElementById('lk-code').textContent='Press any key to begin';updateStats();});
+document.getElementById('btn-show').addEventListener('click',()=>{const rem=Object.keys(keyEls).filter(c=>!tested.has(c));rem.forEach(code=>{(keyEls[code]||[]).forEach(el=>{el.style.outline='2px solid #c8a030';el.style.outlineOffset='2px';setTimeout(()=>{el.style.outline='';el.style.outlineOffset='';},2200);});});document.getElementById('lk-name').textContent=rem.length?rem.length+' remaining':'All done!';document.getElementById('lk-code').textContent=rem.length?'highlighted in gold':'Every key has been tested';});
+document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(el=>{el.classList.remove('open');el.querySelector('.faq-q').setAttribute('aria-expanded','false');});if(!open){item.classList.add('open');btn.setAttribute('aria-expanded','true');}});});
+document.addEventListener('keydown',function _firstKey(){if(window.trackFirstKey)window.trackFirstKey();document.removeEventListener('keydown',_firstKey);},{once:true});
+(function(){const banner=document.getElementById('cookie-banner');if(!banner)return;const consent=localStorage.getItem('cookie_consent');if(consent){banner.classList.add('hidden');return;}setTimeout(()=>banner.classList.remove('hidden'),800);document.getElementById('cookie-accept').addEventListener('click',()=>{localStorage.setItem('cookie_consent','accepted');banner.classList.add('hidden');if(window.gtag)gtag('consent','update',{analytics_storage:'granted',ad_storage:'granted'});});document.getElementById('cookie-decline').addEventListener('click',()=>{localStorage.setItem('cookie_consent','declined');banner.classList.add('hidden');if(window.gtag)gtag('consent','update',{analytics_storage:'denied',ad_storage:'denied'});});})();
+})();
+</script>
+<script>
+function scaleKeyboard(){var inner=document.querySelector('.kb-inner');var shell=document.querySelector('.kb-shell');if(!inner||!shell)return;inner.style.transform='';inner.style.height='';shell.style.height='';var availableWidth=shell.clientWidth-28;var naturalWidth=inner.scrollWidth;var naturalHeight=inner.scrollHeight;var scale=availableWidth/naturalWidth;inner.style.transform='scale('+scale+')';inner.style.transformOrigin='top left';shell.style.height=(naturalHeight*scale+28)+'px';}
+window.addEventListener('load',scaleKeyboard);window.addEventListener('resize',scaleKeyboard);
+</script>
+<script>
+function openModal(id){var el=document.getElementById('modal-'+id);if(!el)return;el.classList.add('open');document.body.style.overflow='hidden';el.onclick=function(e){if(e.target===el)closeModal(id);};document.addEventListener('keydown',function esc(e){if(e.key==='Escape'){closeModal(id);document.removeEventListener('keydown',esc);}});}
+function closeModal(id){var el=document.getElementById('modal-'+id);if(el){el.classList.remove('open');document.body.style.overflow='';}}
+</script>
+
+<div id="modal-privacy" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div><h2 id="privacy-title">Privacy Policy</h2><p>KeysTester.com &mdash; Last updated: April 2025</p></div>
+      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-effective">
+        <span><strong>Effective:</strong> 25 April 2025</span>
+        <span><strong>Site:</strong> KeysTester.com</span>
+      </div>
+      <h3>1. Overview</h3>
+      <p>KeysTester.com is committed to protecting your privacy. <strong>Your keystrokes are never collected, stored, or transmitted.</strong> The keyboard test runs entirely client-side using the JavaScript <code>KeyboardEvent</code> API.</p>
+      <h3>2. Data We Collect</h3>
+      <p>We collect anonymised usage statistics via Google Analytics 4 (page views, session duration, browser type, country). No names, emails, or personally identifiable information are collected. No account is required.</p>
+      <h3>3. Google Analytics &amp; AdSense</h3>
+      <p>GA4 anonymises IP addresses before storage. AdSense cookies may be set to deliver relevant ads. You can opt out at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</p>
+      <h3>4. Your Rights</h3>
+      <p>Under GDPR, CCPA, or applicable laws you may clear browser cookies and opt out of Google Analytics at any time to exercise data rights.</p>
+      <h3>5. Contact</h3>
+      <p>Questions? Email <strong>privacy@KeysTester.com</strong></p>
+    </div>
+  </div>
+</div>
+
+
+<div id="modal-terms" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div><h2 id="terms-title">Terms &amp; Conditions</h2><p>KeysTester.com &mdash; Last updated: April 2025</p></div>
+      <button class="modal-close" onclick="closeModal('terms')" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-effective">
+        <span><strong>Effective:</strong> 25 April 2025</span>
+        <span><strong>Jurisdiction:</strong> India</span>
+        <span><strong>Operator:</strong> KeysTester.com</span>
+      </div>
+      <h3>1. Acceptance</h3>
+      <p>By using KeysTester.com you agree to these Terms. We may modify them at any time; continued use constitutes acceptance.</p>
+      <h3>2. Service Description</h3>
+      <p>We provide a free browser-based keyboard diagnostic utility. <strong>No keystroke data is transmitted to our servers.</strong> The Service is provided "as is" for informational purposes only.</p>
+      <h3>3. Governing Law</h3>
+      <p>These Terms are governed by the laws of India. Disputes are subject to courts in India.</p>
+      <h3>4. Contact</h3>
+      <p>Questions? Email <strong>legal@KeysTester.com</strong></p>
+    </div>
+  </div>
+</div>
+
+
+<div id="cookie-banner" class="hidden" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p>We use cookies and similar technologies to analyse traffic and serve relevant ads.
+     Your keystrokes are <strong>never</strong> stored or transmitted.
+     See our <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-btn decline" id="cookie-decline">Decline</button>
+    <button class="cookie-btn accept"  id="cookie-accept">Accept &amp; Continue</button>
+  </div>
+</div>
+
+
+</body>
+</html>
