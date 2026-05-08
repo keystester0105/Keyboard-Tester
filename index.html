@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keyboard Test Online – Test Every Key on Your Keyboard | KeysTester.com</title>
+<title>Keyboard Test Online – Test Every Key on Your Keyboard | KeyboardTest.app</title>
 <meta name="description" content="Free online keyboard tester. Press any key to instantly check if it works. Test all 104 keys including function keys, numpad, and special keys. No download required.">
 <meta name="keywords" content="keyboard test, keyboard tester, test keyboard online, keyboard key test, check keyboard keys, online keyboard test, keyboard not working, test every key">
 <meta name="robots" content="index, follow">
-<meta name="author" content="KeysTester.com">
-<link rel="canonical" href="https://KeysTester.com/">
+<meta name="author" content="KeyboardTest.app">
+<link rel="canonical" href="https://keyboardtest.app/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Keyboard Test Online – Test Every Key Instantly">
 <meta property="og:description" content="Free online keyboard tester. Press any key to check if it works. Supports all 104 keys. No download needed.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://KeysTester.com/">
+<meta property="og:url" content="https://keyboardtest.app/">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
@@ -27,7 +27,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Keyboard Test Online",
-  "url": "https://KeysTester.com/",
+  "url": "https://keyboardtest.app/",
   "description": "Free online tool to test every key on your keyboard. Instantly detect broken, stuck, or malfunctioning keys.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
@@ -36,47 +36,17 @@
 }
 </script>
 
-<!-- ═══════════════════════════════════════════════════
-     GOOGLE ANALYTICS 4
-     Replace G-XXXXXXXXXX with your real Measurement ID
-     from: analytics.google.com → Admin → Data Streams
-     ═══════════════════════════════════════════════════ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P20MSBD1W3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX', {
-    page_title: 'Keyboard Test Online',
-    page_location: window.location.href,
-    anonymize_ip: true          // GDPR-friendly default
-  });
-
-  // Custom GA4 event: fired when user tests their first key
-  window._ga4_first_key_sent = false;
-  window.trackFirstKey = function() {
-    if (!window._ga4_first_key_sent) {
-      gtag('event', 'keyboard_test_started', { event_category: 'engagement' });
-      window._ga4_first_key_sent = true;
-    }
-  };
-  // Custom GA4 event: fired when all keys are tested
-  window.trackTestComplete = function(total) {
-    gtag('event', 'keyboard_test_complete', {
-      event_category: 'engagement',
-      event_label: 'all_keys_tested',
-      value: total
-    });
-  };
-</script>
-
-<!-- ═══════════════════════════════════════════════════
-     GOOGLE ADSENSE
-     Replace ca-pub-XXXXXXXXXXXXXXXX with your Publisher ID
-     from: adsense.google.com → Account → Account info
-     ═══════════════════════════════════════════════════ -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-     crossorigin="anonymous"></script>
+<!--
+  ════════════════════════════════════════════════════
+  SITE CONFIG — edit site-config.js to change:
+    • Google Analytics ID
+    • Google AdSense Publisher ID + Ad Slot IDs
+    • Navigation menu links
+    • Privacy Policy content
+    • Terms & Conditions content
+  ════════════════════════════════════════════════════
+-->
+<script src="site-config.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -102,7 +72,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 17.5px; scroll-behavior: smooth; }
+html { font-size: 14px; scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
@@ -159,9 +129,21 @@ nav a:hover { color: var(--accent); background: #e8e0d0; }
 
 /* ── MAIN LAYOUT ── */
 main {
-  width: 100%;
-  padding: 14px 24px 0;
-  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 14px 16px 0;
+}
+
+/* Full-bleed keyboard section breaks out of the 980px main container */
+.kb-full-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  padding: 0 0 12px;
+  background: transparent;
 }
 
 /* ── STATS ROW ── */
@@ -218,14 +200,22 @@ main {
 /* ── KEYBOARD SHELL ── */
 .kb-shell {
   background: #1c1510;
-  border: 2px solid #100d08;
-  border-radius: 10px;
-  padding: 12px 14px 16px;
-  box-shadow: 0 4px 0 #08060400, inset 0 1px 0 #3a3020;
-  margin-bottom: 12px;
+  border: none;
+  border-top: 2px solid #100d08;
+  border-bottom: 2px solid #100d08;
+  border-radius: 0;
+  padding: 14px 0 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 #3a3020;
+  margin-bottom: 0;
   overflow: hidden;
-  width: 100%;
-  box-sizing: border-box;
+  position: relative;
+}
+
+/* Scaler wrapper — JS sets transform-origin + scale */
+.kb-scaler {
+  display: inline-block;
+  transform-origin: top left;
+  /* actual pixel size is fixed; scale brings it to fit */
 }
 
 .kb-inner {
@@ -233,13 +223,12 @@ main {
   flex-direction: column;
   gap: 0;
   width: max-content;
-  transform-origin: top left;
 }
 
 /* function row */
 .fn-row {
   display: flex;
-  gap: 0;
+  gap: 4px;
   align-items: center;
   margin-bottom: 6px;
 }
@@ -266,36 +255,36 @@ main {
   border-top: 1px solid #5a4a36;
   border-bottom: 3px solid var(--key-bot);
   border-radius: 4px;
-  height: 45px;
-  min-width: 45px;
+  height: 36px;
+  min-width: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 9px;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   color: var(--key-txt);
   cursor: default;
   transition: background 0.06s, color 0.06s, transform 0.05s;
-  padding: 2px 5px;
+  padding: 2px 4px;
   text-align: center;
   line-height: 1.1;
   flex-shrink: 0;
   user-select: none;
 }
-.key .top-label { font-size: 10px; color: #6a5840; font-weight: 400; }
-.key .bot-label { font-size: 11px; font-weight: 700; }
+.key .top-label { font-size: 8px; color: #6a5840; font-weight: 400; }
+.key .bot-label { font-size: 9px; font-weight: 700; }
 
 /* widths */
-.w-esc  { min-width: 45px; }
-.w-15   { min-width: 68px; }
-.w-175  { min-width: 79px; }
-.w-20   { min-width: 90px; }
-.w-225  { min-width: 101px; }
-.w-275  { min-width: 124px; }
-.w-625  { min-width: 281px; }
-.tall   { height: 95px; justify-content: flex-end; padding-bottom: 6px; }
+.w-esc  { min-width: 36px; }
+.w-15   { min-width: 54px; }
+.w-175  { min-width: 63px; }
+.w-20   { min-width: 72px; }
+.w-225  { min-width: 81px; }
+.w-275  { min-width: 99px; }
+.w-625  { min-width: 225px; }
+.tall   { height: 76px; justify-content: flex-end; padding-bottom: 5px; }
 
 .key.pressed {
   background: var(--pressed);
@@ -322,15 +311,15 @@ main {
 }
 
 /* nav spacing */
-.nav-gap { height: 13px; }
-.nav-gap-sm { height: 5px; }
+.nav-gap { height: 10px; }
+.nav-gap-sm { height: 4px; }
 
 /* numpad grid */
 .num-grid {
   display: grid;
-  grid-template-columns: repeat(4, 45px);
-  grid-template-rows: repeat(5, 45px);
-  gap: 5px;
+  grid-template-columns: repeat(4, 36px);
+  grid-template-rows: repeat(5, 36px);
+  gap: 4px;
 }
 
 /* ── INFO ROW ── */
@@ -374,7 +363,9 @@ main {
 /* legend */
 .legend {
   display: flex; gap: 16px; align-items: center;
-  justify-content: center; padding: 6px 0 2px;
+  justify-content: center;
+  padding: 8px 0 4px;
+  background: #1c1510;
 }
 .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--muted); }
 .swatch {
@@ -387,9 +378,9 @@ main {
 
 /* ── SECTIONS BELOW ── */
 .below-fold {
-  width: 100%;
-  padding: 24px 24px 48px;
-  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
 }
 
 .section-divider {
@@ -649,7 +640,7 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
 /* Leaderboard 728×90 — sits between nav and main */
 .ad-leaderboard {
   width: 100%;
-  width: 100%;
+  max-width: 980px;
   margin: 10px auto 0;
   min-height: 100px;
 }
@@ -692,6 +683,7 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
   .btn { flex: 1; text-align: center; }
   header h1 { font-size: 1.3rem; }
 }
+
 </style>
 </head>
 <body>
@@ -701,24 +693,21 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
   <p>Free tool to test every key on your keyboard — instantly, in your browser</p>
 </header>
 
-<nav aria-label="Page sections">
+<!-- Navigation — default links here; site-config.js will override if loaded -->
+<nav id="site-nav" aria-label="Page sections">
   <a href="#tester">Tester</a>
   <a href="#how-to-use">How to Use</a>
   <a href="#features">Features</a>
   <a href="#faq">FAQ</a>
 </nav>
 
-<!-- ── AD: Leaderboard 728×90 (above the fold, below nav) ──
-     Replace data-ad-client and data-ad-slot with your values
-     from: AdSense → Ads → By ad unit → Display ads          -->
+<!-- AD: Leaderboard — publisher/slot set by site-config.js -->
 <div class="ad-slot ad-leaderboard" aria-label="Advertisement" role="complementary">
-  <ins class="adsbygoogle"
+  <ins class="adsbygoogle adsense-slot"
        style="display:block"
-       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-       data-ad-slot="1111111111"
+       data-slot="leaderboard"
        data-ad-format="horizontal"
        data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <main id="tester" aria-label="Keyboard tester">
@@ -752,7 +741,9 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
   </div>
 
   <!-- Keyboard -->
-  <div class="kb-shell" role="application" aria-label="Virtual keyboard layout">
+  <div class="kb-full-bleed">
+  <div class="kb-shell" id="kb-shell" role="application" aria-label="Virtual keyboard layout">
+    <div class="kb-scaler" id="kb-scaler">
     <div class="kb-inner" id="kb-inner">
 
       <!-- Function row -->
@@ -765,15 +756,17 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
         <div class="num-block"  id="num-block"></div>
       </div>
 
-      <!-- Legend -->
-      <div class="legend" aria-hidden="true">
-        <div class="legend-item"><div class="swatch sw-n"></div>Not tested</div>
-        <div class="legend-item"><div class="swatch sw-p"></div>Pressed</div>
-        <div class="legend-item"><div class="swatch sw-d"></div>Tested ✓</div>
-      </div>
-
     </div>
+
+    </div><!-- /.kb-scaler -->
+  </div><!-- /.kb-shell -->
+  <!-- Legend — outside shell so it's never clipped by overflow:hidden -->
+  <div class="legend" aria-hidden="true">
+    <div class="legend-item"><div class="swatch sw-n"></div>Not tested</div>
+    <div class="legend-item"><div class="swatch sw-p"></div>Pressed</div>
+    <div class="legend-item"><div class="swatch sw-d"></div>Tested ✓</div>
   </div>
+  </div><!-- /.kb-full-bleed -->
 
   <!-- Info row -->
   <div class="info-row">
@@ -795,6 +788,7 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
   </div>
 
 </main>
+
 
 <!-- ─────────────── BELOW FOLD ─────────────── -->
 <div class="below-fold">
@@ -973,11 +967,9 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
     <div class="ad-slot ad-rectangle" aria-label="Advertisement" role="complementary" style="position:sticky;top:16px;">
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="2222222222"
+       data-slot="rectangle"
            data-ad-format="rectangle"
            data-full-width-responsive="false"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
   </div><!-- /.content-ad-row -->
@@ -986,11 +978,9 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
   <div class="ad-slot ad-banner" aria-label="Advertisement" role="complementary" style="margin:20px 0;">
     <ins class="adsbygoogle"
          style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="3333333333"
+       data-slot="banner"
          data-ad-format="horizontal"
          data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <hr class="section-divider" data-label="About" style="margin-top:0;">
@@ -1010,10 +1000,28 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
     <span style="color:#4a3a28;">|</span>
     <a href="#" onclick="openModal('terms');return false;">Terms &amp; Conditions</a>
   </div>
-  <p>&copy; 2025 KeysTester.com &mdash; Free online keyboard diagnostic tool</p>
+  <p id="footer-copy"></p>
   <p style="margin-top:5px;">No keystrokes are ever stored or transmitted. Runs entirely in your browser.</p>
 </footer>
 
+
+<!-- Modals injected here by site-config.js (privacy + terms) -->
+<div id="modals-container"></div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="hidden" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p>
+    We use cookies and similar technologies to analyse traffic and serve relevant ads.
+    Your keystrokes are <strong>never</strong> stored or transmitted.
+    See our <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a> for details.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn decline" id="cookie-decline">Decline</button>
+    <button class="cookie-btn accept"  id="cookie-accept">Accept &amp; Continue</button>
+  </div>
+</div>
+
+<!-- Keyboard logic -->
 <script>
 (function(){
 
@@ -1103,7 +1111,7 @@ const tested = new Set();
 function makeKey(def) {
   if (!def) {
     const sp = document.createElement('div');
-    sp.style.cssText = 'min-width:45px;height:45px;flex-shrink:0;';
+    sp.style.cssText = 'min-width:36px;height:36px;flex-shrink:0;';
     return sp;
   }
   const el = document.createElement('div');
@@ -1129,18 +1137,13 @@ function makeSpacer(h) {
 
 // Build function row
 const fnRow = document.getElementById('fn-row');
-let fnNullCount = 0;
-KEY_DEFS.fn.forEach((k, i) => {
+KEY_DEFS.fn.forEach(k => {
   if (k === null) {
     const g = document.createElement('div');
-    const gapW = fnNullCount === 0 ? 37 : 21; // big gap after Esc, smaller between groups
-    g.style.cssText = 'width:' + gapW + 'px;flex-shrink:0;';
+    g.style.cssText = 'width:10px;flex-shrink:0;';
     fnRow.appendChild(g);
-    fnNullCount++;
   } else {
-    const el = makeKey(k);
-    el.style.marginRight = '4px';
-    fnRow.appendChild(el);
+    fnRow.appendChild(makeKey(k));
   }
 });
 
@@ -1156,7 +1159,7 @@ KEY_DEFS.main.forEach(row => {
 // Build nav block
 const navBlock = document.getElementById('nav-block');
 NAV_ROWS.forEach(row => {
-  if (row === 'gap') { navBlock.appendChild(makeSpacer(13)); return; }
+  if (row === 'gap') { navBlock.appendChild(makeSpacer(10)); return; }
   const rowDiv = document.createElement('div');
   rowDiv.className = 'kb-row';
   row.forEach(k => rowDiv.appendChild(makeKey(k)));
@@ -1167,7 +1170,7 @@ NAV_ROWS.forEach(row => {
 const numBlock = document.getElementById('num-block');
 const grid = document.createElement('div');
 grid.className = 'num-grid';
-grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,45px);grid-template-rows:repeat(5,45px);gap:5px;';
+grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,36px);grid-template-rows:repeat(5,36px);gap:4px;';
 
 NUM_CELLS.forEach(cell => {
   const el = document.createElement('div');
@@ -1177,8 +1180,8 @@ NUM_CELLS.forEach(cell => {
   el.style.gridRow    = cell.rs  ? cell.r + ' / span ' + cell.rs  : cell.r.toString();
   el.style.gridColumn = cell.cs  ? cell.col + ' / span ' + cell.cs : cell.col.toString();
   if (cell.rs || cell.cs) {
-    if (cell.rs) { el.style.height = (45 * cell.rs + 5 * (cell.rs - 1)) + 'px'; el.style.justifyContent = 'flex-end'; el.style.paddingBottom = '6px'; }
-    if (cell.cs) { el.style.minWidth = (45 * cell.cs + 5 * (cell.cs - 1)) + 'px'; }
+    if (cell.rs) { el.style.height = (36 * cell.rs + 4 * (cell.rs - 1)) + 'px'; el.style.justifyContent = 'flex-end'; el.style.paddingBottom = '5px'; }
+    if (cell.cs) { el.style.minWidth = (36 * cell.cs + 4 * (cell.cs - 1)) + 'px'; }
   }
   if (!keyEls[cell.c]) { keyEls[cell.c] = []; total++; }
   keyEls[cell.c].push(el);
@@ -1189,6 +1192,7 @@ numBlock.appendChild(grid);
 // Stats init
 document.getElementById('s-remain').textContent = total;
 document.getElementById('prog-lbl').textContent = '0 / ' + total + ' keys';
+scaleKeyboard();
 
 function updateStats() {
   const n = tested.size;
@@ -1273,226 +1277,53 @@ document.addEventListener('keydown', function _firstKey() {
   document.removeEventListener('keydown', _firstKey);
 }, { once: true });
 
-// ── Cookie Consent ──
-(function() {
-  const banner = document.getElementById('cookie-banner');
-  if (!banner) return;
-  const consent = localStorage.getItem('cookie_consent');
-  if (consent) { banner.classList.add('hidden'); return; }
-  setTimeout(() => banner.classList.remove('hidden'), 800);
 
-  document.getElementById('cookie-accept').addEventListener('click', () => {
-    localStorage.setItem('cookie_consent', 'accepted');
-    banner.classList.add('hidden');
-    if (window.gtag) gtag('consent', 'update', {
-      analytics_storage: 'granted',
-      ad_storage: 'granted'
-    });
-  });
-  document.getElementById('cookie-decline').addEventListener('click', () => {
-    localStorage.setItem('cookie_consent', 'declined');
-    banner.classList.add('hidden');
-    if (window.gtag) gtag('consent', 'update', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied'
-    });
-  });
-})();
-
-})();
-</script>
-
-<!-- ═══════════════════════════════════════════════════
-     COOKIE CONSENT BANNER
-     Required for GDPR (EU), CCPA (California), etc.
-     ═══════════════════════════════════════════════════ -->
-
-<!-- PRIVACY POLICY MODAL -->
-<div id="modal-privacy" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div><h2 id="privacy-title">Privacy Policy</h2><p>KeysTester.com &mdash; Last updated: April 2025</p></div>
-      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-effective">
-        <span><strong>Effective:</strong> 25 April 2025</span>
-        <span><strong>Site:</strong> KeysTester.com</span>
-        <span><strong>Controller:</strong> KeysTester.com</span>
-      </div>
-      <h3>1. Overview</h3>
-      <p>KeysTester.com ("we", "our", "the site") is committed to protecting your privacy. This Privacy Policy explains what data we collect, why we collect it, and how it is used when you visit our website.</p>
-      <p><strong>Your keystrokes are never collected, stored, or transmitted.</strong> The keyboard test runs entirely in your browser using the JavaScript <code>KeyboardEvent</code> API. No key press data ever leaves your device.</p>
-
-      <h3>2. Information We Collect</h3>
-      <p>We collect two categories of information automatically when you visit the site:</p>
-      <ul>
-        <li><strong>Usage data</strong> &mdash; page views, session duration, browser type, operating system, screen resolution, referring URL, and country (via Google Analytics 4). This data is anonymised and aggregated.</li>
-        <li><strong>Cookie data</strong> &mdash; small text files stored by your browser as described in Section 4 below.</li>
-      </ul>
-      <p>We do <strong>not</strong> collect names, email addresses, or any personally identifiable information. We do not require you to create an account.</p>
-
-      <h3>3. Google Analytics</h3>
-      <p>We use <strong>Google Analytics 4 (GA4)</strong> to understand how visitors use the site. GA4 collects anonymised usage statistics such as which pages are visited and how long sessions last.</p>
-      <ul>
-        <li>IP addresses are anonymised before storage.</li>
-        <li>Data is processed by Google LLC and may be stored outside your country.</li>
-        <li>You can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Add-on</a>.</li>
-        <li>Clicking <strong>Decline</strong> in our cookie banner sets <code>analytics_storage</code> to <code>denied</code> &mdash; GA4 will not track your session.</li>
-      </ul>
-
-      <h3>4. Cookies</h3>
-      <p>We use the following cookies:</p>
-      <ul>
-        <li><strong>_ga, _ga_XXXXXXXX</strong> (Google Analytics) &mdash; distinguish users and sessions. Duration: 2 years / 24 hours. Purpose: analytics.</li>
-        <li><strong>cookie_consent</strong> (First-party, localStorage) &mdash; stores your consent choice. Persists until you clear browser data. Purpose: remembering your preference.</li>
-      </ul>
-      <p>Google AdSense may also set cookies to deliver and measure ads. These are governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You can manage or delete cookies at any time in your browser settings.</p>
-
-      <h3>5. Google AdSense &amp; Advertising</h3>
-      <p>We display ads served by <strong>Google AdSense</strong>. Google uses cookies to serve ads based on your prior visits to this and other websites.</p>
-      <ul>
-        <li>Opt out of personalised ads at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
-        <li>Or visit <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a> for industry-wide opt-out.</li>
-        <li>If you declined cookies, <code>ad_storage</code> is denied and personalised ads will not be served.</li>
-      </ul>
-      <p>We are not responsible for the content of Google ads or third-party websites linked from advertisements.</p>
-
-      <h3>6. Third-Party Services</h3>
-      <ul>
-        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google LLC</a> &mdash; Analytics &amp; Advertising</li>
-        <li><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> &mdash; Web font delivery</li>
-      </ul>
-
-      <h3>7. Data Retention</h3>
-      <p>Google Analytics data is retained for 14 months. Cookie consent preferences persist in <code>localStorage</code> until you clear your browser data.</p>
-
-      <h3>8. Your Rights</h3>
-      <p>Under GDPR (EU/UK), CCPA (California), or other applicable laws you may have rights to access, correct, or delete data. Since we collect no PII directly, you can exercise most rights by clearing browser cookies and opting out of Google Analytics or ad personalisation.</p>
-
-      <h3>9. Children's Privacy</h3>
-      <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. We do not knowingly collect personal data from children.</p>
-
-      <h3>10. Changes to This Policy</h3>
-      <p>We may update this policy from time to time. Changes will be posted here with a revised effective date.</p>
-
-      <h3>11. Contact</h3>
-      <p>Questions? Contact us at <strong>privacy@KeysTester.com</strong></p>
-    </div>
-  </div>
-</div>
-
-<!-- TERMS & CONDITIONS MODAL -->
-<div id="modal-terms" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div><h2 id="terms-title">Terms &amp; Conditions</h2><p>KeysTester.com &mdash; Last updated: April 2025</p></div>
-      <button class="modal-close" onclick="closeModal('terms')" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-effective">
-        <span><strong>Effective:</strong> 25 April 2025</span>
-        <span><strong>Jurisdiction:</strong> India</span>
-        <span><strong>Operator:</strong> KeysTester.com</span>
-      </div>
-      <h3>1. Acceptance of Terms</h3>
-      <p>By accessing or using KeysTester.com ("the Site", "the Service"), you agree to be bound by these Terms &amp; Conditions. If you do not agree, please discontinue use immediately. We reserve the right to modify these Terms at any time; continued use constitutes acceptance of the revised Terms.</p>
-
-      <h3>2. Description of Service</h3>
-      <p>KeysTester.com provides a free, browser-based utility that allows users to test the functionality of their physical keyboard keys. The Service operates entirely client-side; <strong>no keystroke data is transmitted to our servers</strong>. The Service is provided "as is" for informational and diagnostic purposes only and is not a substitute for professional hardware diagnosis.</p>
-
-      <h3>3. Permitted Use</h3>
-      <p>You may use the Site for personal, non-commercial keyboard testing. You agree not to:</p>
-      <ul>
-        <li>Use automated scripts, bots, or scrapers to access the Site.</li>
-        <li>Reverse-engineer, copy, or redistribute the Site's code without permission.</li>
-        <li>Interfere with the Site's operation or servers.</li>
-        <li>Use the Site for any unlawful purpose.</li>
-        <li>Frame or embed the Site in another website without prior written consent.</li>
-      </ul>
-
-      <h3>4. Intellectual Property</h3>
-      <p>All content on this Site &mdash; including text, graphics, design, code, logos, and layout &mdash; is the intellectual property of KeysTester.com unless otherwise noted. You may not reproduce, distribute, or create derivative works without explicit written permission. The underlying keyboard event data (key codes, names) is part of the W3C Web standard and is not subject to copyright.</p>
-
-      <h3>5. Advertisements</h3>
-      <p>The Site displays advertisements served by Google AdSense and potentially other third-party ad networks. We are not responsible for the content of any third-party advertisements. Clicking on ads may take you to third-party websites governed by their own terms and privacy policies. We reserve the right to place and change ad placements at our discretion.</p>
-
-      <h3>6. Disclaimer of Warranties</h3>
-      <p>The Service is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, including but not limited to accuracy, fitness for a particular purpose, or uninterrupted operation. Browser limitations, OS-level key interception, and keyboard firmware may affect test results. We do not warrant that results will meet your requirements.</p>
-
-      <h3>7. Limitation of Liability</h3>
-      <p>To the fullest extent permitted by law, KeysTester.com shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of the Service, including inaccuracy in test results, hardware damage, or reliance on third-party content or advertisements.</p>
-
-      <h3>8. Third-Party Links</h3>
-      <p>The Site may contain links to third-party websites (including through ads). These are provided for convenience only. We have no control over third-party content and accept no responsibility for them or for any loss arising from your use of them.</p>
-
-      <h3>9. Privacy</h3>
-      <p>Your use of the Site is also governed by our <a href="#" onclick="closeModal('terms');setTimeout(()=>openModal('privacy'),100);return false;">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
-
-      <h3>10. Governing Law</h3>
-      <p>These Terms shall be governed by the laws of India. Disputes shall be subject to the exclusive jurisdiction of courts in India.</p>
-
-      <h3>11. Severability</h3>
-      <p>If any provision is found unenforceable, it shall be limited to the minimum extent necessary, and the remaining Terms remain in full force and effect.</p>
-
-      <h3>12. Entire Agreement</h3>
-      <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and KeysTester.com regarding use of the Site.</p>
-
-      <h3>13. Contact</h3>
-      <p>Questions? Contact us at <strong>legal@KeysTester.com</strong></p>
-    </div>
-  </div>
-</div>
-
-<script>
-function openModal(id) {
-  var el = document.getElementById('modal-' + id);
-  if (!el) return;
-  el.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  el.onclick = function(e) { if (e.target === el) closeModal(id); };
-  document.addEventListener('keydown', function esc(e) {
-    if (e.key === 'Escape') { closeModal(id); document.removeEventListener('keydown', esc); }
-  });
-}
-function closeModal(id) {
-  var el = document.getElementById('modal-' + id);
-  if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
-}
-</script>
-<div id="cookie-banner" class="hidden" role="dialog" aria-live="polite" aria-label="Cookie consent">
-  <p>
-    We use cookies and similar technologies to analyse traffic and serve relevant ads.
-    Your keystrokes are <strong>never</strong> stored or transmitted.
-    See our <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a> for details.
-  </p>
-  <div class="cookie-btns">
-    <button class="cookie-btn decline" id="cookie-decline">Decline</button>
-    <button class="cookie-btn accept"  id="cookie-accept">Accept &amp; Continue</button>
-  </div>
-</div>
-
-
-<script>
+// ── Keyboard scaler: fits keyboard to container at any viewport ──
 function scaleKeyboard() {
-  var inner = document.querySelector('.kb-inner');
-  var shell = document.querySelector('.kb-shell');
-  if (!inner || !shell) return;
-  // Reset so we can measure natural dimensions
-  inner.style.transform = '';
-  inner.style.height = '';
-  shell.style.height = '';
-  var availableWidth = shell.clientWidth - 28; // 14px padding each side
-  var naturalWidth = inner.scrollWidth;
-  var naturalHeight = inner.scrollHeight;
-  var scale = availableWidth / naturalWidth;
-  inner.style.transform = 'scale(' + scale + ')';
-  inner.style.transformOrigin = 'top left';
-  // Shrink shell to scaled height so nothing overlaps below
-  shell.style.height = (naturalHeight * scale + 28) + 'px'; // 12px top + 16px bottom padding
+  var shell  = document.getElementById('kb-shell');
+  var scaler = document.getElementById('kb-scaler');
+  var inner  = document.getElementById('kb-inner');
+  if (!shell || !scaler || !inner) return;
+
+  // Reset scale so we can measure natural size
+  scaler.style.transform = 'scale(1)';
+  shell.style.height = 'auto';
+
+  var naturalW = inner.offsetWidth;
+  var naturalH = scaler.offsetHeight;
+
+  // Fill full viewport width, then shrink by 10% for breathing room
+  var availW = window.innerWidth;
+  var scale = (availW / naturalW) * 0.90;
+
+  scaler.style.transform = 'scale(' + scale + ')';
+  scaler.style.transformOrigin = 'top left';
+
+  // Shell height = scaled keyboard only (legend is now outside shell)
+  shell.style.height = (naturalH * scale + 28) + 'px';
 }
-window.addEventListener('load', scaleKeyboard);
+
+// Run on load, resize, and font load
 window.addEventListener('resize', scaleKeyboard);
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(scaleKeyboard);
+} else {
+  window.addEventListener('load', scaleKeyboard);
+}
+// Also run after a short delay to catch late layout shifts
+setTimeout(scaleKeyboard, 100);
+setTimeout(scaleKeyboard, 400);
+
+// Cookie consent handled by site-config.js
+
+// Fire GA4 first-key event
+document.addEventListener('keydown', function _fk() {
+  if (window.trackFirstKey) window.trackFirstKey();
+  document.removeEventListener('keydown', _fk);
+}, { once: true });
+
+})();
 </script>
+
 </body>
 </html>
