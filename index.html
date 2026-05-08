@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keyboard Test Online – Test Every Key on Your Keyboard | KeyboardTest.app</title>
+<title>Keyboard Test Online – Test Every Key on Your Keyboard | KeysTester.com</title>
 <meta name="description" content="Free online keyboard tester. Press any key to instantly check if it works. Test all 104 keys including function keys, numpad, and special keys. No download required.">
 <meta name="keywords" content="keyboard test, keyboard tester, test keyboard online, keyboard key test, check keyboard keys, online keyboard test, keyboard not working, test every key">
 <meta name="robots" content="index, follow">
-<meta name="author" content="KeyboardTest.app">
-<link rel="canonical" href="https://keyboardtest.app/">
+<meta name="author" content="KeysTester.com">
+<link rel="canonical" href="https://KeysTester.com/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Keyboard Test Online – Test Every Key Instantly">
 <meta property="og:description" content="Free online keyboard tester. Press any key to check if it works. Supports all 104 keys. No download needed.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://keyboardtest.app/">
+<meta property="og:url" content="https://KeysTester.com/">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
@@ -27,7 +27,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Keyboard Test Online",
-  "url": "https://keyboardtest.app/",
+  "url": "https://KeysTester.com/",
   "description": "Free online tool to test every key on your keyboard. Instantly detect broken, stuck, or malfunctioning keys.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
@@ -1296,9 +1296,7 @@ function scaleKeyboard() {
   var availW = window.innerWidth;
   var scale = (availW / naturalW) * 0.90;
 
-  // Center the scaled keyboard: offset by half the leftover space
-  var leftOffset = (availW - naturalW * scale) / 2;
-  scaler.style.transform = 'translateX(' + leftOffset + 'px) scale(' + scale + ')';
+  scaler.style.transform = 'scale(' + scale + ')';
   scaler.style.transformOrigin = 'top left';
 
   // Shell height = scaled keyboard only (legend is now outside shell)
