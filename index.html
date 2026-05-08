@@ -1296,7 +1296,9 @@ function scaleKeyboard() {
   var availW = window.innerWidth;
   var scale = (availW / naturalW) * 0.90;
 
-  scaler.style.transform = 'scale(' + scale + ')';
+  // Center the scaled keyboard: offset by half the leftover space
+  var leftOffset = (availW - naturalW * scale) / 2;
+  scaler.style.transform = 'translateX(' + leftOffset + 'px) scale(' + scale + ')';
   scaler.style.transformOrigin = 'top left';
 
   // Shell height = scaled keyboard only (legend is now outside shell)
