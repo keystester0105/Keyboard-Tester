@@ -1,14 +1,3 @@
-/**
- * ╔══════════════════════════════════════════════════════════════╗
- * ║              KeyboardTest.app — SITE CONFIG                  ║
- * ║  Edit this ONE file to update across the entire website:     ║
- * ║   • Google Analytics ID                                      ║
- * ║   • Google AdSense Publisher ID + Ad Slot IDs                ║
- * ║   • Navigation menu links                                    ║
- * ║   • Privacy Policy content                                   ║
- * ║   • Terms & Conditions content                               ║
- * ╚══════════════════════════════════════════════════════════════╝
- */
 
 const SITE_CONFIG = {
 
@@ -18,10 +7,10 @@ const SITE_CONFIG = {
   site: {
     name:      'Keyboard Test Online',
     tagline:   'Free tool to test every key on your keyboard — instantly, in your browser',
-    domain:    'keyboardtest.app',
+    domain:    'keystester.com',
     year:      '2025',
-    emailPrivacy: 'privacy@keyboardtest.app',
-    emailLegal:   'legal@keyboardtest.app',
+    emailPrivacy: 'keystester0105@gmail.com',
+    emailLegal:   'keystester0105@gmail.com',
   },
 
   /* ──────────────────────────────────────────────────────────────
