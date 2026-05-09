@@ -65,7 +65,7 @@ const SITE_CONFIG = {
       title:      'Keyboard Test',
       icon:       '⌨️',
       description: 'Test every key on your keyboard in real time. Detects stuck, broken, or unresponsive keys instantly — no download needed.',
-      href:       '#tester',
+      href:       'https://keystester.com',
       linkLabel:  'Use Tool',
       badge:      'Free',
     },
