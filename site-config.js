@@ -55,17 +55,75 @@ const SITE_CONFIG = {
      Use hash links (#section-id) for same-page sections.
      Use full URLs (https://...) for external pages.
      ────────────────────────────────────────────────────────────── */
+  // ── PAGE-LEVEL NAV LINKS ──
+  // Do NOT put page-specific links here (How to Use, Features, FAQ etc.)
+  // Those are defined per-page using data-nav on the <nav> element, e.g.:
+  //   <nav id="site-nav"
+  //        data-nav='[{"label":"How to Use","href":"#how-to-use"},{"label":"FAQ","href":"#faq"}]'>
+  //   </nav>
+  // Only put GLOBAL links here that appear on every page of the site.
   nav: [
-    { label: 'Tester',      href: '#tester'      },
-    { label: 'How to Use',  href: '#how-to-use'  },
-    { label: 'Features',    href: '#features'    },
-    { label: 'FAQ',         href: '#faq'         },
-    // Add more links below, e.g.:
-    // { label: 'Blog', href: 'https://blog.keyboardtest.app' },
+    // e.g. { label: 'Blog', href: 'https://blog.keyboardtest.app' },
   ],
 
   /* ──────────────────────────────────────────────────────────────
-     5. PRIVACY POLICY
+     5. TOOLS SECTION
+     Add, remove or edit tools shown in the #tools section.
+     Each tool has: title, icon (emoji), description, href, linkLabel.
+     ────────────────────────────────────────────────────────────── */
+  tools: [
+    {
+      title:      'Keyboard Test',
+      icon:       '⌨️',
+      description: 'Test every key on your keyboard in real time. Detects stuck, broken, or unresponsive keys instantly — no download needed.',
+      href:       '#tester',
+      linkLabel:  'Use Tool',
+      badge:      'Free',
+    },
+    {
+      title:      'Mouse Button Test',
+      icon:       '🖱️',
+      description: 'Check all mouse buttons including left, right, middle, and extra side buttons. Identify click registration issues instantly.',
+      href:       'https://mousetest.app',
+      linkLabel:  'Open Tool',
+      badge:      'Free',
+    },
+    {
+      title:      'Typing Speed Test',
+      icon:       '⚡',
+      description: 'Measure your words-per-minute (WPM) and accuracy with a real-time typing test. Track your progress over time.',
+      href:       'https://typingspeedtest.app',
+      linkLabel:  'Open Tool',
+      badge:      'Free',
+    },
+    {
+      title:      'Key Combination Tester',
+      icon:       '🔗',
+      description: 'Test keyboard shortcuts and key combinations. Verify that modifier keys (Ctrl, Alt, Shift, Win) work correctly together.',
+      href:       '#tester',
+      linkLabel:  'Use Tool',
+      badge:      'Beta',
+    },
+    {
+      title:      'Keyboard Layout Viewer',
+      icon:       '🗺️',
+      description: 'Visualise and compare different keyboard layouts including QWERTY, AZERTY, DVORAK, and COLEMAK side by side.',
+      href:       '#',
+      linkLabel:  'Coming Soon',
+      badge:      'Soon',
+    },
+    {
+      title:      'N-Key Rollover Test',
+      icon:       '🎮',
+      description: 'Check how many simultaneous key presses your keyboard can detect. Essential for gamers and typists who need NKRO support.',
+      href:       '#tester',
+      linkLabel:  'Use Tool',
+      badge:      'Free',
+    },
+  ],
+
+  /* ──────────────────────────────────────────────────────────────
+     6. PRIVACY POLICY
      Edit the sections array to update content.
      Each section has a 'title' and 'html' (HTML string).
      ────────────────────────────────────────────────────────────── */
@@ -324,16 +382,72 @@ const SITE_CONFIG = {
 
   onReady(function () {
 
-    /* ── 3. Inject navigation ── */
-    // Rebuilds nav from SITE_CONFIG.nav — also works as fallback update
-    var navEl = document.getElementById('site-nav');
-    if (navEl && SITE_CONFIG.nav && SITE_CONFIG.nav.length) {
-      navEl.innerHTML = SITE_CONFIG.nav.map(function (item) {
-        return '<a href="' + item.href + '">' + item.label + '</a>';
-      }).join('\n  ');
+    /* ── 3. Inject Tools dropdown only ──
+       site-config.js ONLY owns the Tools dropdown.
+       All other nav links stay hardcoded in each page's HTML.
+       Any page just needs:
+         <div class="nav-dropdown" id="nav-tools-dropdown">
+           <button class="nav-dropdown-toggle" id="tools-toggle"
+                   aria-haspopup="true" aria-expanded="false">
+             Tools <span class="caret">&#9660;</span>
+           </button>
+           <div class="nav-dropdown-menu" id="tools-menu" role="menu"></div>
+         </div>
+       ─────────────────────────────────────────────────────── */
+    var toolsMenu = document.getElementById('tools-menu');
+    if (toolsMenu && SITE_CONFIG.tools && SITE_CONFIG.tools.length) {
+
+      // Build dropdown items from SITE_CONFIG.tools
+      toolsMenu.innerHTML = (SITE_CONFIG.tools || []).map(function(tool) {
+        var badgeClass  = 'ndi-badge badge-'
+          + (tool.badge === 'Free' ? 'free' : tool.badge === 'Beta' ? 'beta' : 'soon');
+        var isExternal  = tool.href && tool.href.startsWith('http');
+        var targetAttr  = isExternal ? ' target="_blank" rel="noopener"' : '';
+        var disabledCls = tool.linkLabel === 'Coming Soon' ? ' disabled' : '';
+        return '<a class="nav-dropdown-item' + disabledCls + '" href="' + tool.href + '"'
+          + targetAttr + ' role="menuitem">'
+          + '<span class="ndi-icon">' + tool.icon + '</span>'
+          + '<span class="ndi-body">'
+          + '<span class="ndi-title">' + tool.title
+          + ' <span class="' + badgeClass + '">' + tool.badge + '</span></span>'
+          + '<span class="ndi-desc">' + tool.description + '</span>'
+          + '</span></a>';
+      }).join('');
     }
 
-    /* ── 4. Build and inject Privacy & Terms modals ── */
+    // Wire dropdown toggle
+    var dropdown = document.getElementById('nav-tools-dropdown');
+    var toggle   = document.getElementById('tools-toggle');
+    var menu     = document.getElementById('tools-menu');
+
+    if (toggle && dropdown) {
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = dropdown.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && dropdown.classList.contains('open')) {
+          dropdown.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.focus();
+        }
+      });
+      if (menu) {
+        menu.addEventListener('click', function() {
+          dropdown.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+    }
+
+/* ── 4. Build and inject Privacy & Terms modals ── */
     function buildModal(id, cfg) {
       var sectionsHtml = cfg.sections.map(function (s) {
         return '<h3>' + s.title + '</h3>' + s.html;
@@ -371,7 +485,30 @@ const SITE_CONFIG = {
         buildModal('terms',   SITE_CONFIG.terms);
     }
 
-    /* ── 5. Populate ad slots with publisher + slot IDs ── */
+    /* ── 5. Inject Tools dropdown menu ── */
+    var toolsMenu = document.getElementById('tools-menu');
+    if (toolsMenu && SITE_CONFIG.tools && SITE_CONFIG.tools.length) {
+      toolsMenu.innerHTML = SITE_CONFIG.tools.map(function(tool) {
+        var badgeClass = 'ndi-badge badge-'
+          + (tool.badge === 'Free' ? 'free' : tool.badge === 'Beta' ? 'beta' : 'soon');
+        var isExternal = tool.href && tool.href.startsWith('http');
+        var target = isExternal ? ' target="_blank" rel="noopener"' : '';
+        var disabledClass = tool.linkLabel === 'Coming Soon' ? ' disabled' : '';
+        return '<a class="nav-dropdown-item' + disabledClass + '" href="' + tool.href + '"'
+          + target + ' role="menuitem">'
+          + '<span class="ndi-icon">' + tool.icon + '</span>'
+          + '<span class="ndi-body">'
+          + '<span class="ndi-title">' + tool.title
+          + ' <span class="' + badgeClass + '">' + tool.badge + '</span></span>'
+          + '<span class="ndi-desc">' + tool.description + '</span>'
+          + '</span>'
+          + '</a>';
+      }).join('');
+    }
+
+    /* Toggle logic lives in index.html inline script for reliability */
+
+    /* ── 6. Populate ad slots with publisher + slot IDs ── */
     if (SITE_CONFIG.adsense.enabled) {
       document.querySelectorAll('.adsense-slot').forEach(function (ins) {
         var slotKey = ins.dataset.slot;
