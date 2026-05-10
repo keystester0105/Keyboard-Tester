@@ -76,7 +76,7 @@ const SITE_CONFIG = {
       title:      'Keyboard Test',
       icon:       '⌨️',
       description: 'Test every key on your keyboard in real time. Detects stuck, broken, or unresponsive keys instantly — no download needed.',
-      href:       'www.google.com',
+      href:       'index.html',
       linkLabel:  'Use Tool',
       badge:      'Free',
     },
