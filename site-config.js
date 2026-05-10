@@ -524,4 +524,3 @@ const SITE_CONFIG = {
   };
 
 })();
-
