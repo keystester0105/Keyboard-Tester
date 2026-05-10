@@ -36,6 +36,17 @@
 }
 </script>
 
+<!--
+  ════════════════════════════════════════════════════
+  SITE CONFIG — edit site-config.js to update:
+    • Tools dropdown (appears on every page)
+    • Google Analytics ID
+    • Google AdSense IDs
+    • Privacy Policy & Terms content
+  ════════════════════════════════════════════════════
+-->
+<script src="site-config.js"></script>
+
 <!-- ═══════════════════════════════════════════════════
      GOOGLE ANALYTICS 4
      Replace G-XXXXXXXXXX with your real Measurement ID
@@ -889,6 +900,52 @@ footer a:hover { color: #c8a030; text-decoration: underline; }
   <a href="#features">Features</a>
   <a href="#faq">FAQ</a>
 </nav>
+<script>
+  // Inject tools dropdown immediately after nav is parsed — no waiting needed
+  if (typeof SITE_CONFIG !== 'undefined') {
+    var _menu = document.getElementById('tools-menu');
+    var _dd   = document.getElementById('nav-tools-dropdown');
+    var _btn  = document.getElementById('tools-toggle');
+    if (_menu && SITE_CONFIG.tools) {
+      _menu.innerHTML = SITE_CONFIG.tools.map(function(t) {
+        var bc = 'ndi-badge badge-' + (t.badge==='Free'?'free':t.badge==='Beta'?'beta':'soon');
+        var ext = t.href && t.href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+        var dis = t.linkLabel==='Coming Soon' ? ' disabled' : '';
+        return '<a class="nav-dropdown-item'+dis+'" href="'+t.href+'"'+ext+' role="menuitem">'
+          +'<span class="ndi-icon">'+t.icon+'</span>'
+          +'<span class="ndi-body">'
+          +'<span class="ndi-title">'+t.title+' <span class="'+bc+'">'+t.badge+'</span></span>'
+          +'<span class="ndi-desc">'+t.description+'</span>'
+          +'</span></a>';
+      }).join('');
+    }
+    if (_btn && _dd) {
+      _btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = _dd.classList.toggle('open');
+        _btn.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', function(e) {
+        if (!_dd.contains(e.target)) {
+          _dd.classList.remove('open');
+          _btn.setAttribute('aria-expanded','false');
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key==='Escape') {
+          _dd.classList.remove('open');
+          _btn.setAttribute('aria-expanded','false');
+          _btn.focus();
+        }
+      });
+      var _m = document.getElementById('tools-menu');
+      if (_m) _m.addEventListener('click', function() {
+        _dd.classList.remove('open');
+        _btn.setAttribute('aria-expanded','false');
+      });
+    }
+  }
+</script>
 
 
 <!-- ── AD: Leaderboard 728×90 (above the fold, below nav) ──
@@ -1490,159 +1547,9 @@ document.addEventListener('keydown', function _firstKey() {
      Required for GDPR (EU), CCPA (California), etc.
      ═══════════════════════════════════════════════════ -->
 
-<!-- PRIVACY POLICY MODAL -->
-<div id="modal-privacy" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div><h2 id="privacy-title">Privacy Policy</h2><p>KeysTester.com &mdash; Last updated: April 2025</p></div>
-      <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-effective">
-        <span><strong>Effective:</strong> 25 April 2025</span>
-        <span><strong>Site:</strong> KeysTester.com</span>
-        <span><strong>Controller:</strong> KeysTester.com</span>
-      </div>
-      <h3>1. Overview</h3>
-      <p>KeysTester.com ("we", "our", "the site") is committed to protecting your privacy. This Privacy Policy explains what data we collect, why we collect it, and how it is used when you visit our website.</p>
-      <p><strong>Your keystrokes are never collected, stored, or transmitted.</strong> The keyboard test runs entirely in your browser using the JavaScript <code>KeyboardEvent</code> API. No key press data ever leaves your device.</p>
+<!-- Modals injected by site-config.js -->
+<div id="modals-container"></div>
 
-      <h3>2. Information We Collect</h3>
-      <p>We collect two categories of information automatically when you visit the site:</p>
-      <ul>
-        <li><strong>Usage data</strong> &mdash; page views, session duration, browser type, operating system, screen resolution, referring URL, and country (via Google Analytics 4). This data is anonymised and aggregated.</li>
-        <li><strong>Cookie data</strong> &mdash; small text files stored by your browser as described in Section 4 below.</li>
-      </ul>
-      <p>We do <strong>not</strong> collect names, email addresses, or any personally identifiable information. We do not require you to create an account.</p>
-
-      <h3>3. Google Analytics</h3>
-      <p>We use <strong>Google Analytics 4 (GA4)</strong> to understand how visitors use the site. GA4 collects anonymised usage statistics such as which pages are visited and how long sessions last.</p>
-      <ul>
-        <li>IP addresses are anonymised before storage.</li>
-        <li>Data is processed by Google LLC and may be stored outside your country.</li>
-        <li>You can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Add-on</a>.</li>
-        <li>Clicking <strong>Decline</strong> in our cookie banner sets <code>analytics_storage</code> to <code>denied</code> &mdash; GA4 will not track your session.</li>
-      </ul>
-
-      <h3>4. Cookies</h3>
-      <p>We use the following cookies:</p>
-      <ul>
-        <li><strong>_ga, _ga_XXXXXXXX</strong> (Google Analytics) &mdash; distinguish users and sessions. Duration: 2 years / 24 hours. Purpose: analytics.</li>
-        <li><strong>cookie_consent</strong> (First-party, localStorage) &mdash; stores your consent choice. Persists until you clear browser data. Purpose: remembering your preference.</li>
-      </ul>
-      <p>Google AdSense may also set cookies to deliver and measure ads. These are governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You can manage or delete cookies at any time in your browser settings.</p>
-
-      <h3>5. Google AdSense &amp; Advertising</h3>
-      <p>We display ads served by <strong>Google AdSense</strong>. Google uses cookies to serve ads based on your prior visits to this and other websites.</p>
-      <ul>
-        <li>Opt out of personalised ads at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
-        <li>Or visit <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a> for industry-wide opt-out.</li>
-        <li>If you declined cookies, <code>ad_storage</code> is denied and personalised ads will not be served.</li>
-      </ul>
-      <p>We are not responsible for the content of Google ads or third-party websites linked from advertisements.</p>
-
-      <h3>6. Third-Party Services</h3>
-      <ul>
-        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google LLC</a> &mdash; Analytics &amp; Advertising</li>
-        <li><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> &mdash; Web font delivery</li>
-      </ul>
-
-      <h3>7. Data Retention</h3>
-      <p>Google Analytics data is retained for 14 months. Cookie consent preferences persist in <code>localStorage</code> until you clear your browser data.</p>
-
-      <h3>8. Your Rights</h3>
-      <p>Under GDPR (EU/UK), CCPA (California), or other applicable laws you may have rights to access, correct, or delete data. Since we collect no PII directly, you can exercise most rights by clearing browser cookies and opting out of Google Analytics or ad personalisation.</p>
-
-      <h3>9. Children's Privacy</h3>
-      <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. We do not knowingly collect personal data from children.</p>
-
-      <h3>10. Changes to This Policy</h3>
-      <p>We may update this policy from time to time. Changes will be posted here with a revised effective date.</p>
-
-      <h3>11. Contact</h3>
-      <p>Questions? Contact us at <strong>KeysTester0105@gmail.com</strong></p>
-    </div>
-  </div>
-</div>
-
-<!-- TERMS & CONDITIONS MODAL -->
-<div id="modal-terms" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div><h2 id="terms-title">Terms &amp; Conditions</h2><p>KeysTester.com &mdash; Last updated: April 2025</p></div>
-      <button class="modal-close" onclick="closeModal('terms')" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-effective">
-        <span><strong>Effective:</strong> 25 April 2025</span>
-        <span><strong>Jurisdiction:</strong> India</span>
-        <span><strong>Operator:</strong> KeysTester.com</span>
-      </div>
-      <h3>1. Acceptance of Terms</h3>
-      <p>By accessing or using KeysTester.com ("the Site", "the Service"), you agree to be bound by these Terms &amp; Conditions. If you do not agree, please discontinue use immediately. We reserve the right to modify these Terms at any time; continued use constitutes acceptance of the revised Terms.</p>
-
-      <h3>2. Description of Service</h3>
-      <p>KeysTester.com provides a free, browser-based utility that allows users to test the functionality of their physical keyboard keys. The Service operates entirely client-side; <strong>no keystroke data is transmitted to our servers</strong>. The Service is provided "as is" for informational and diagnostic purposes only and is not a substitute for professional hardware diagnosis.</p>
-
-      <h3>3. Permitted Use</h3>
-      <p>You may use the Site for personal, non-commercial keyboard testing. You agree not to:</p>
-      <ul>
-        <li>Use automated scripts, bots, or scrapers to access the Site.</li>
-        <li>Reverse-engineer, copy, or redistribute the Site's code without permission.</li>
-        <li>Interfere with the Site's operation or servers.</li>
-        <li>Use the Site for any unlawful purpose.</li>
-        <li>Frame or embed the Site in another website without prior written consent.</li>
-      </ul>
-
-      <h3>4. Intellectual Property</h3>
-      <p>All content on this Site &mdash; including text, graphics, design, code, logos, and layout &mdash; is the intellectual property of KeysTester.com unless otherwise noted. You may not reproduce, distribute, or create derivative works without explicit written permission. The underlying keyboard event data (key codes, names) is part of the W3C Web standard and is not subject to copyright.</p>
-
-      <h3>5. Advertisements</h3>
-      <p>The Site displays advertisements served by Google AdSense and potentially other third-party ad networks. We are not responsible for the content of any third-party advertisements. Clicking on ads may take you to third-party websites governed by their own terms and privacy policies. We reserve the right to place and change ad placements at our discretion.</p>
-
-      <h3>6. Disclaimer of Warranties</h3>
-      <p>The Service is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, including but not limited to accuracy, fitness for a particular purpose, or uninterrupted operation. Browser limitations, OS-level key interception, and keyboard firmware may affect test results. We do not warrant that results will meet your requirements.</p>
-
-      <h3>7. Limitation of Liability</h3>
-      <p>To the fullest extent permitted by law, KeysTester.com shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of the Service, including inaccuracy in test results, hardware damage, or reliance on third-party content or advertisements.</p>
-
-      <h3>8. Third-Party Links</h3>
-      <p>The Site may contain links to third-party websites (including through ads). These are provided for convenience only. We have no control over third-party content and accept no responsibility for them or for any loss arising from your use of them.</p>
-
-      <h3>9. Privacy</h3>
-      <p>Your use of the Site is also governed by our <a href="#" onclick="closeModal('terms');setTimeout(()=>openModal('privacy'),100);return false;">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
-
-      <h3>10. Governing Law</h3>
-      <p>These Terms shall be governed by the laws of India. Disputes shall be subject to the exclusive jurisdiction of courts in India.</p>
-
-      <h3>11. Severability</h3>
-      <p>If any provision is found unenforceable, it shall be limited to the minimum extent necessary, and the remaining Terms remain in full force and effect.</p>
-
-      <h3>12. Entire Agreement</h3>
-      <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and KeysTester.com regarding use of the Site.</p>
-
-      <h3>13. Contact</h3>
-      <p>Questions? Contact us at <strong>KeysTester0105@gmail.com</strong></p>
-    </div>
-  </div>
-</div>
-
-<script>
-function openModal(id) {
-  var el = document.getElementById('modal-' + id);
-  if (!el) return;
-  el.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  el.onclick = function(e) { if (e.target === el) closeModal(id); };
-  document.addEventListener('keydown', function esc(e) {
-    if (e.key === 'Escape') { closeModal(id); document.removeEventListener('keydown', esc); }
-  });
-}
-function closeModal(id) {
-  var el = document.getElementById('modal-' + id);
-  if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
-}
-</script>
 <div id="cookie-banner" class="hidden" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p>
     We use cookies and similar technologies to analyse traffic and serve relevant ads.
@@ -1676,6 +1583,10 @@ function scaleKeyboard() {
 }
 window.addEventListener('load', scaleKeyboard);
 window.addEventListener('resize', scaleKeyboard);
+</script>
+<script>
+  // Run site-config DOM injection after full page is parsed
+  if (typeof siteConfigInit === 'function') siteConfigInit();
 </script>
 </body>
 </html>
