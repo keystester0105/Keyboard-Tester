@@ -89,7 +89,7 @@ const SITE_CONFIG = {
      ────────────────────────────────────────────────────────────── */
   privacy: {
     title:        'Privacy Policy',
-    effectiveDate: '25 April 2025',
+    effectiveDate: '25 April 2026',
     site:          'KeysTester.com',
     controller:    'KeysTester.com',
     sections: [
@@ -204,7 +204,7 @@ const SITE_CONFIG = {
      ────────────────────────────────────────────────────────────── */
   terms: {
     title:        'Terms & Conditions',
-    effectiveDate: '25 April 2025',
+    effectiveDate: '25 April 2026',
     jurisdiction:  'India',
     operator:      'KeysTester.com',
     sections: [
