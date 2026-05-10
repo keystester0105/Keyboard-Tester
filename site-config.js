@@ -88,10 +88,10 @@ const SITE_CONFIG = {
      Each section has a 'title' and 'html' (HTML string).
      ────────────────────────────────────────────────────────────── */
   privacy: {
-    title:        'Privacy Policy',
-    effectiveDate: '25 April 2026',
-    site:          'KeysTester.com',
-    controller:    'KeysTester.com',
+  //  title:        'Privacy Policy',
+   // effectiveDate: '25 April 2026',
+   // site:          'KeysTester.com',
+   // controller:    'KeysTester.com',
     sections: [
       {
         title: '1. Overview',
@@ -193,7 +193,7 @@ const SITE_CONFIG = {
       },
       {
         title: '11. Contact',
-        html: `<p>Questions? Contact us at <strong>privacy@KeysTester.com</strong></p>`
+        html: `<p>Questions? Contact us at <strong>KeysTester0105@gmail.com</strong></p>`
       },
     ]
   },
@@ -204,9 +204,9 @@ const SITE_CONFIG = {
      ────────────────────────────────────────────────────────────── */
   terms: {
     title:        'Terms & Conditions',
-    effectiveDate: '25 April 2026',
-    jurisdiction:  'India',
-    operator:      'KeysTester.com',
+ //   effectiveDate: '25 April 2026',
+ //   jurisdiction:  'India',
+ //   operator:      'KeysTester.com',
     sections: [
       {
         title: '1. Acceptance of Terms',
@@ -276,24 +276,24 @@ const SITE_CONFIG = {
                <a href="#" onclick="closeModal('terms');setTimeout(()=>openModal('privacy'),100);return false;">
                Privacy Policy</a>, which is incorporated into these Terms by reference.</p>`
       },
+  //    {
+  //      title: '10. Governing Law',
+  //      html: `<p>These Terms shall be governed by the laws of India. Disputes shall be subject to
+  //             the exclusive jurisdiction of courts in India.</p>`
+  //    },
       {
-        title: '10. Governing Law',
-        html: `<p>These Terms shall be governed by the laws of India. Disputes shall be subject to
-               the exclusive jurisdiction of courts in India.</p>`
-      },
-      {
-        title: '11. Severability',
+        title: '10. Severability',
         html: `<p>If any provision is found unenforceable, it shall be limited to the minimum extent
                necessary, and the remaining Terms remain in full force and effect.</p>`
       },
       {
-        title: '12. Entire Agreement',
+        title: '11. Entire Agreement',
         html: `<p>These Terms, together with our Privacy Policy, constitute the entire agreement between
                you and KeysTester.com regarding use of the Site.</p>`
       },
       {
-        title: '13. Contact',
-        html: `<p>Questions? Contact us at <strong>legal@KeysTester.com</strong></p>`
+        title: '12. Contact',
+        html: `<p>Questions? Contact us at <strong>KeysTester0105@gmail.com</strong></p>`
       },
     ]
   }
