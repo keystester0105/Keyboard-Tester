@@ -19,9 +19,9 @@ const SITE_CONFIG = {
     name:      'Keyboard Test Online',
     tagline:   'Free tool to test every key on your keyboard — instantly, in your browser',
     domain:    'KeysTester.com',
-    year:      '2025',
-    emailPrivacy: 'privacy@KeysTester.com',
-    emailLegal:   'legal@KeysTester.com',
+    year:      '2026',
+    emailPrivacy: 'KeysTester0105@gmail.com',
+    emailLegal:   'KeysTester0105@gmail.com',
   },
 
   /* ──────────────────────────────────────────────────────────────
